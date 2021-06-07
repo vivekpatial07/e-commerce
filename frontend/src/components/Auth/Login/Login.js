@@ -1,6 +1,6 @@
 import React from 'react'
 import AuthLogo from '../../../Assets/AuthAssets/AuthLogo/AuthLogo'
-// import LoginSvg from '../../../Assets/AuthAssets/LoginSvg/LoginSvg'
+import LoginSvg from '../../../Assets/AuthAssets/LoginSvg/LoginSvg'
 import './Login.css'
 
 const Login = () => {
@@ -17,8 +17,8 @@ const Login = () => {
       </form>
     {/* Sign up ? <button>SignUp</button> */}
     </div>
-    <div>
-      {/* <LoginSvg /> */}
+    <div className='svgWrapper'>
+      <LoginSvg />
     </div>
     </div>
   )
