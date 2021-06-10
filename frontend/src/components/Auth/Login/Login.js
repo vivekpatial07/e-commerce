@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import AuthLogo from '../../../Assets/AuthAssets/AuthLogo/AuthLogo'
-import LoginSvg from '../../../Assets/AuthAssets/LoginSvg/LoginSvg'
+// import LoginSvg from '../../../Assets/AuthAssets/LoginSvg/LoginSvg'
 import { loginInitiate } from '../../../redux/actionCreators/AuthCreators/authCreators'
 import './Login.css'
+import { requiredValidate, emailValid, createPasswordValidate } from '../../../utils/validations'
 
 const Login = () => {
 
   const [data, setData] = useState({})
+  const [errors, setErrors] = useState({})
+  
   const dispatch = useDispatch()
 
   const changeHandler = (e) => {
@@ -18,7 +21,20 @@ const Login = () => {
   
   const submitHandler = (e) => {
     e.preventDefault()
-    dispatch(loginInitiate(data))
+
+    const {email, password} = data
+
+    const errorsObject = {
+      email: requiredValidate(email) || emailValid(email),
+      password: requiredValidate(password) || createPasswordValidate(password)
+    }
+
+    if (!errorsObject.password && !errorsObject.email) {
+      dispatch(loginInitiate(data))
+    } else {
+      setErrors(errorsObject)
+    }
+
   }
 
   return (
@@ -28,14 +44,25 @@ const Login = () => {
         <AuthLogo />
       </div>
       <form>
-        <input placeholder='email' onChange={changeHandler} name='email'/>
-        <input type='password' placeholder='password' onChange={changeHandler} name='password'/>
+        <input
+          placeholder={errors.email ? errors.email :'email'}
+          onChange={changeHandler}
+          name='email'
+          className={errors.email && 'error'}
+        />
+        <input
+          type='password'
+          placeholder={errors.password ? errors.password :'password'}
+          onChange={changeHandler}
+          name='password'
+          className={errors.password && 'error'}
+        />
         <button className='loginBtn' onClick={submitHandler}>Login</button>
       </form>
     {/* Sign up ? <button>SignUp</button> */}
     </div>
     <div className='svgWrapper'>
-      <LoginSvg />
+      {/* <LoginSvg /> */}
     </div>
     </div>
   )

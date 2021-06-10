@@ -1,0 +1,13 @@
+{
+  "errorMessage": {
+    "required": "required *",
+    "invalid": "invalid",
+    "email_invalid": "* Invalid email",
+    "name": "* Invalid name",
+    "password": "* Must be at least 7 characters long.",
+    "email_exists": "User with given email is already registered"
+  },
+  "successMessage": {
+    "loginSuccessful": "welcome!"
+  }
+}

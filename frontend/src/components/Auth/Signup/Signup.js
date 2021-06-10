@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import AuthLogo from '../../../Assets/AuthAssets/AuthLogo/AuthLogo'
-import SignupSvg from '../../../Assets/AuthAssets/SignupSvg/SignupSvg'
+// import SignupSvg from '../../../Assets/AuthAssets/SignupSvg/SignupSvg'
 import { signupInitiate } from '../../../redux/actionCreators/AuthCreators/authCreators'
 import './Signup.css'
+import { requiredValidate, emailValid, createPasswordValidate } from '../../../utils/validations'
 
 const Signup = () => {
 
   const [data, setData] = useState({})
+  const [errors, setErrors] = useState({})
+
   const dispatch = useDispatch()
 
   const changeHandler = (e) => {
@@ -18,8 +21,33 @@ const Signup = () => {
   
   const submitHandler = (e) => {
     e.preventDefault()
-    dispatch(signupInitiate(data))
+    
+    const {username, email, password} = data
+
+    const errorsObject = {
+      username: requiredValidate(username),
+      email: requiredValidate(email) || emailValid(email),
+      password: requiredValidate(password) || createPasswordValidate(password)
+    }
+
+    if (!errorsObject.username && !errorsObject.password && !errorsObject.email) {
+      dispatch(signupInitiate({...data}))
+    } else {
+      setErrors(errorsObject)
+    }
+
   }
+  // const error = Object.entries(errors).map(err=>{
+  //   if(err[1]){
+  //     return(
+  //       <div>
+  //         {err[0]} is {err[1]}
+  //       </div>
+  //     )
+  //   }else {
+  //     return ""
+  //   }
+  // })
 
   return (
     <div className='main-wrapper'>
@@ -27,15 +55,32 @@ const Signup = () => {
         <div className='logoWrapper'>
           <AuthLogo />
         </div>
+        {/* <div>{error}</div> */}
         <form>
-          <input placeholder='username' onChange={changeHandler} name='username'/>
-          <input placeholder='email' onChange={changeHandler} name='email'/>
-          <input type='password' placeholder='password' onChange={changeHandler} name='password'/>
+          <input
+            placeholder={errors.username ? errors.username :'username'}
+            onChange={changeHandler}
+            name='username'
+            className={errors.username && 'error'}
+          />
+          <input
+            placeholder={errors.email ? errors.email :'email'}
+            onChange={changeHandler}
+            name='email'
+            className={errors.email && 'error'}
+          />
+          <input
+            type='password'
+            placeholder={errors.password ? errors.password :'password'}
+            onChange={changeHandler}
+            name='password'
+            className={errors.password && 'error'}
+          />
           <button className='signupBtn' onClick={submitHandler}>Sign up</button>
         </form>
       </div>
       <div className='signupSvgWrapper'>
-        <SignupSvg />
+        {/* <SignupSvg /> */}
       </div>
     </div>
   )
