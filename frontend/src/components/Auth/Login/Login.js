@@ -30,6 +30,7 @@ const Login = () => {
     }
 
     if (!errorsObject.password && !errorsObject.email) {
+      setErrors({})
       dispatch(loginInitiate(data))
     } else {
       setErrors(errorsObject)

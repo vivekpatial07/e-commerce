@@ -31,6 +31,7 @@ const Signup = () => {
     }
 
     if (!errorsObject.username && !errorsObject.password && !errorsObject.email) {
+      setErrors({})
       dispatch(signupInitiate({...data}))
     } else {
       setErrors(errorsObject)
@@ -53,7 +54,7 @@ const Signup = () => {
     <div className='main-wrapper'>
       <div className='signupWrapper'>
         <div className='logoWrapper'>
-          <AuthLogo />
+          <AuthLogo />  
         </div>
         {/* <div>{error}</div> */}
         <form>
