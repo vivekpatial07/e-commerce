@@ -32,4 +32,26 @@ const signup = async(req, res) => {
   }
 }
 
-module.exports = {signup}
+const login =  async(req, res) => {
+  const { email, password } = req.body
+
+  const user  = await User.findOne({ email })
+  const passwordMatched = await user.matchPassword(password)
+  
+  if(user && passwordMatched) {
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      isSuperAdmin: user.isSuperAdmin,
+      token: generateToken(user._id)
+    })
+  } else {
+    res.json(401)
+    throw new Error('Invalid email or password')
+  }
+}
+
+
+module.exports = { signup, login }

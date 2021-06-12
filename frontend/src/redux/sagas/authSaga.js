@@ -3,7 +3,7 @@ import axios from 'axios'
 export function* signupSaga(data) {
   yield console.log(data, 'signup')
   // axios.post()
-  const response = yield axios.post('http://localhost:7000/signup', data.payload)
+  const response = yield axios.post('http://localhost:7000/ecomm/users/signup', data.payload)
   // .then(res=>{
   //   console.log(res)
   // }).catch(err => {
