@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import AuthLogo from '../../../Assets/AuthAssets/AuthLogo/AuthLogo'
 // import LoginSvg from '../../../Assets/AuthAssets/LoginSvg/LoginSvg'
-import { loginInitiate } from '../../../redux/actionCreators/AuthCreators/authCreators'
+import { loginInitiate } from '../../../redux/actionCreators/authCreators'
 import './Login.css'
 import { requiredValidate, emailValid, createPasswordValidate } from '../../../utils/validations'
 
