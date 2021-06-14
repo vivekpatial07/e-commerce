@@ -27,3 +27,17 @@ export const loginInitiate = (data) => {
     payload: data
   }
 }
+
+export const loginSuccess = (data) => {
+  return {
+    type: authActions.LOGINSUCCESS,
+    payload: data
+  }
+}
+
+export const loginFailure = (data) => {
+  return {
+    type: authActions.LOGINFAILURE,
+    payload: data
+  }
+}

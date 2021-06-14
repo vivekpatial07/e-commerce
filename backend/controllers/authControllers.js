@@ -1,5 +1,6 @@
 const User = require('../models/userModel')
 const generateToken = require('../utils/generateToken')
+const bcrypt = require('bcryptjs')
 
 const signup = async(req, res) => {
   const {username, email, password} = req.body
@@ -35,13 +36,16 @@ const signup = async(req, res) => {
 const login =  async(req, res) => {
   const { email, password } = req.body
 
+  // need to install express async handler to catch errors
   const user  = await User.findOne({ email })
-  const passwordMatched = await user.matchPassword(password)
+  console.log(user)
+  // need to review this const passwordMatched = await user.matchPassword(password)
+  const isMatch = await bcrypt.compare(password, user.password);
   
-  if(user && passwordMatched) {
+  if(user && isMatch) {
     res.json({
       _id: user._id,
-      name: user.name,
+      username: user.username,
       email: user.email,
       isAdmin: user.isAdmin,
       isSuperAdmin: user.isSuperAdmin,

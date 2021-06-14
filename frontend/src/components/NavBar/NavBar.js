@@ -11,7 +11,7 @@ const NavBar = () => {
       </div>
       <div className='left-items'>
         <div>
-          {user.username ? `Welcome! ${user.username}` : 'Login'}
+          {user?.username ? `Welcome! ${user.username}` : 'Login'}
         </div>
         <div>
           Cart
