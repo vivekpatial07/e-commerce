@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { put } from 'redux-saga'
+import { put } from 'redux-saga/effects'
 import { loginSuccess, logoutFailure, logoutSuccess, signupSuccess } from '../actionCreators/authCreators'
 
 export function* signupSaga(data) {

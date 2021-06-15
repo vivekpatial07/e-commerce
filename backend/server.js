@@ -4,6 +4,7 @@ var cors = require('cors')
 const colors = require('colors')
 const connectDB = require('./config/db')
 const authRouter = require('./routes/authRoutes')
+const productRouter = require('./routes/productRoutes')
 
 dotenv.config()
 connectDB()
@@ -15,6 +16,7 @@ const PORT = process.env.PORT || 7000
 
 //routing
 app.use('/ecomm/users', authRouter)
+app.use('/ecomm/products', productRouter)
 
 app.listen(PORT,()=>{
   console.log(`running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold)
