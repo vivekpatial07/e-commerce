@@ -53,6 +53,24 @@ export const loginReducer = (state=authState, action) => {
         authloader: false
       }
       
+    case authActions.LOGOUTINITIATE:
+      return {
+        ...state,
+        authloader: true
+      }
+
+    case authActions.LOGOUTSUCCESS:
+      return {
+        ...state,
+        authloader: false
+      }
+
+    case authActions.LOGOUTFAILURE:
+      return {
+        ...state,
+        authloader: false
+      }
+        
     default:
       return {
         ...state

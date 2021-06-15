@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { loginSuccess, signupSuccess } from '../actionCreators/authCreators'
+import { put } from 'redux-saga'
+import { loginSuccess, logoutFailure, logoutSuccess, signupSuccess } from '../actionCreators/authCreators'
 
 export function* signupSaga(data) {
   yield console.log(data, 'signup')
@@ -7,7 +8,7 @@ export function* signupSaga(data) {
   const response = yield axios.post('http://localhost:7000/ecomm/users/signup', data.payload)
   console.log(response)
   try {
-    yield signupSuccess()
+    yield put(signupSuccess())
     localStorage.setItem('userInfo', JSON.stringify(response.data))
   } catch (error) {
     console.log(error,'error')
@@ -21,9 +22,19 @@ export function* loginSaga(data) {
   const response = yield axios.post('http://localhost:7000/ecomm/users/login', data.payload)
   console.log(response)
   try {
-    yield loginSuccess()
+    yield put(loginSuccess())
     localStorage.setItem('userInfo', JSON.stringify(response.data))
   } catch(error) {
     console.log(error,'error')
+  }
+}
+
+export function* logoutSaga() {
+  //later use localstorage.clearall////i guess
+  try {
+    yield put(logoutSuccess())    
+    yield localStorage.removeItem('userInfo')
+  } catch (error) {
+    yield put(logoutFailure())    
   }
 }

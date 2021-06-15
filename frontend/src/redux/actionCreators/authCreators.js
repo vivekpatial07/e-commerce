@@ -41,3 +41,21 @@ export const loginFailure = (data) => {
     payload: data
   }
 }
+
+export const logoutInitiate = () => {
+  return {
+    type: authActions.LOGOUTINITIATE
+  }
+}
+
+export const logoutSuccess = () => {
+  return {
+    type: authActions.LOGOUTSUCCESS
+  }
+}
+
+export const logoutFailure = () => {
+  return {
+    type: authActions.LOGOUTFAILURE
+  }
+}
