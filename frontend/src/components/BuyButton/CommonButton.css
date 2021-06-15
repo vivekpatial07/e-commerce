@@ -1,0 +1,44 @@
+.common-btn {
+  border-radius: 15px 15px;
+  border: none;
+  color: #ffffff;
+  height: 35px;
+  width: 150px;
+  margin: 20px 0 0 0;
+}
+
+@media only screen and (max-width: 800px) {
+  .common-btn {
+    width: 125px;
+    height: 35px;
+  }
+}
+
+@media only screen and (max-width: 1120px) {
+  .common-btn {
+    width: 125px;
+    height: 35px;
+  }
+}
+
+.common-btn:hover {
+  cursor: pointer;
+}
+
+.card-add-to-cart {
+  background-color: #015249;
+}
+
+.card-add-to-cart:hover {
+  background-color: #0c7467;
+
+}
+
+.card-buy-now {
+  background-color: #57BC90;
+}
+
+.card-buy-now:hover {
+  background-color: #5ecc9c;
+
+}
