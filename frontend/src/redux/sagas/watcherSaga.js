@@ -5,7 +5,7 @@ import {
   loginSaga,
   logoutSaga
  } from './authSaga'
-import { getAllProductsSaga } from './productSaga'
+import { getAllProductsSaga, getSingleProductSaga } from './productSaga'
 
 export default function* watcherSaga() {
   /*----------------------auth saga--------------------*/ 
@@ -15,4 +15,5 @@ export default function* watcherSaga() {
 
   /*--------------------product saga--------------------*/ 
   yield takeLatest(productActions.GET_ALL_PRODUCTS_INITIATE, getAllProductsSaga)
+  yield takeLatest(productActions.GET_SINGLE_PRODUCT_INITIATE, getSingleProductSaga)
 }

@@ -34,3 +34,42 @@ export const productsReducer = (state=productsState, action) => {
   }
 }
 
+const singleProductState = {
+  singleProductLoader: false,
+  product: {}
+}
+
+export const singleProductReducer = (state=singleProductState, action) => {
+  switch(action.type) {
+    
+    case productActions.GET_SINGLE_PRODUCT_INITIATE:
+      return {
+        ...state,
+        singleProductLoader: true
+      }
+
+    case productActions.GET_SINGLE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        singleProductLoader: false,
+        product: action.payload
+      }
+    
+    case productActions.GET_SINGLE_PRODUCT_FAILURE:
+      return {
+        ...state,
+        singleProductLoader: false
+      }
+    case productActions.CLEAR_SINGLE_PRODUCT:
+      return {
+        ...state,
+        singleProductLoader: false,
+        product: {}
+      }
+    default:
+      return {
+      ...state
+    }
+  }
+}
+

@@ -20,11 +20,9 @@ const Home = () => {
       key={product._id}
       title={product.title}
       category={product.category}
-      description={product.description}
       price={product.price}
       image={product.image}
       id={product._id}
-      
       />
   })
 

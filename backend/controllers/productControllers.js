@@ -10,5 +10,15 @@ const getAllProducts = async(req, res) => {
   }
 }
 
+const getSingleProduct = async(req, res) => {
+  const productId = req.params.id
+  const product = await Product.findById(productId)
+  if(product) {
+    res.json(product)
+  } else {
+    res.status(404)
+    throw new Error('Product not found')
+  }
+}
 
-module.exports = { getAllProducts }
+module.exports = { getAllProducts, getSingleProduct }

@@ -1,29 +1,33 @@
 import React from 'react'
 import './ProductCard.css'
 import CommonButton from '../BuyButton/CommonButton'
-
+import { withRouter } from 'react-router-dom'
 const ProductCard = ({
   id,
   image,
   title,
   category,
-  description,
-  price
+  price,
+  history,
+  match: { path }
 }) => {
 
   const buyNowHandler = (e) => {
-    e.stopPropagation()
     console.log('buy now')
   }
+
   const addToCartHandler = (e) => {
-    e.stopPropagation()
     console.log('add to card')
+  }
+
+  const goToProduct = () => {
+    history.push(`${path}/product/${category}/${id}`)
   }
 
   return (
     <div className='card-wrapper'>
       
-      <div className='image-wrapper'>
+      <div className='image-wrapper' onClick={goToProduct}>
         <img src={image} alt='product'/>
       </div>
       <div className='card-title'>
@@ -40,4 +44,4 @@ const ProductCard = ({
   )
 }
 
-export default ProductCard
+export default withRouter(ProductCard)

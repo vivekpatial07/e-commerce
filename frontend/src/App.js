@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import Login from './components/Auth/Login/Login';
 import Signup from './components/Auth/Signup/Signup';
 import Home from './components/Home/Home';
+import ProductPage from './components/ProductPage/ProductPage';
 // import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Switch>
           <Route path='/login' component={Login}/>
           <Route path='/signup' component={Signup}/>
+          <Route path='/ecommerce/product/:category/:id' component={ProductPage}/>
           <Route path='/ecommerce' component={Home}/>
           <Redirect from="/" to="/ecommerce" />
           

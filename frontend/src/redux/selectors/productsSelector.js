@@ -9,5 +9,15 @@ export const allProductsData = createSelector(
       productsLoader
     }
   }
+)
 
+export const singleProductData = createSelector(
+  state => state.singleProduct,
+  singleProd => {
+    const { product, singleProductLoader } = singleProd
+    return {
+      product,
+      singleProductLoader
+    }
+  }
 )

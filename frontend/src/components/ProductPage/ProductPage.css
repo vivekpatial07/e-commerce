@@ -1,0 +1,28 @@
+.productPageWrapper{
+  display: flex;
+  justify-content: center;
+}
+
+.productPageImage > img {
+  height: 500px;
+  margin: 25px 50px;
+}
+
+.detailsWrapper {
+  height: 500px;
+  border: 1px solid black;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.productPageTitle {
+  font-size: 25px;
+}
+
+.productPageDescription {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
