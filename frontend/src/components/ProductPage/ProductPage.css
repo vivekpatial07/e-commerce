@@ -1,28 +1,56 @@
 .productPageWrapper{
   display: flex;
-  justify-content: center;
 }
 
 .productPageImage > img {
   height: 500px;
+  width: 350px;
   margin: 25px 50px;
 }
 
 .detailsWrapper {
   height: 500px;
-  border: 1px solid black;
+  /* border: 1px solid lightgray; */
   padding: 25px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  flex-basis: 450px;
+  margin: 0 25px;
 }
 
 .productPageTitle {
   font-size: 25px;
+  color: grey;
+  margin: 10px;
 }
 
 .productPageDescription {
+  border-top: 1px solid lightgray;
+  margin: 10px 0;
+  padding: 10px 0;
+}
+
+.productPagePrice {
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  padding: 10px;
+  margin: 10px 0;
+  /* width: 150px; */
+}
+
+.productPageNextStep {
+  flex-basis: 300px;
+  margin: 10px 25px;
+}
+
+.productPageLoader {
+  height: 70vh;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.productPageMainPrice {
+  border: 1px solid lightgray;
 }

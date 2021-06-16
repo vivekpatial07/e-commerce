@@ -1,9 +1,10 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { logoutInitiate } from '../../redux/actionCreators/authCreators'
 import './NavBar.css'
-const NavBar = () => {
-  
+
+const NavBar = ({history}) => {
   const user = JSON.parse(localStorage.getItem('userInfo'))
   const dispatch = useDispatch()
 
@@ -13,7 +14,7 @@ const NavBar = () => {
 
   return (
     <div className='nav-wrapper'>
-      <div className='logo'>
+      <div className='logo' onClick={()=>history.push('/')}>
         A
       </div>
       <div className='left-items'>
@@ -28,4 +29,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar
+export default withRouter(NavBar)

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import CommonLoader from '../CommonLoader/CommonLoader'
 import { getAllProductsInitiate } from '../../redux/actionCreators/productCreators'
 import Nav from '../NavBar/NavBar'
 import ProductCard from '../ProductCard/ProductCard'
@@ -9,7 +10,7 @@ import './Home.css'
 const Home = () => {
   
   const dispatch = useDispatch()
-  const { allProducts } = useSelector(allProductsData) 
+  const { allProducts, productsLoader } = useSelector(allProductsData) 
 
   useEffect(()=>{
     dispatch(getAllProductsInitiate())
@@ -30,9 +31,17 @@ const Home = () => {
     <div>
       <Nav />
       <h1 className='home-header'>Welcome to ecommerce</h1>
-        <div className='products-wrapper'>
-          {products}
-        </div>
+      {productsLoader
+        ? (
+          <div className='homeLoaderWrapper'><CommonLoader height={70} width={70}/></div>
+        ): (
+        <>
+          <div className='products-wrapper'>
+            {products}
+          </div>
+        </>
+        )
+      }
     </div>
   )
 }

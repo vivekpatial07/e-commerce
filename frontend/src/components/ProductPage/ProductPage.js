@@ -5,10 +5,12 @@ import { clearSingleProduct, getSingleProductInitiate } from '../../redux/action
 import { singleProductData } from '../../redux/selectors/productsSelector'
 import './ProductPage.css'
 import CommonButton from '../BuyButton/CommonButton'
+import CommonLoader from '../CommonLoader/CommonLoader'
+
 const ProductPage = ({match: {params: { id, category }}}) => {
 
   const dispatch = useDispatch()
-  const { product } = useSelector(singleProductData)
+  const { product, singleProductLoader } = useSelector(singleProductData)
   
   useEffect(() => {
     dispatch(getSingleProductInitiate(id))
@@ -20,26 +22,36 @@ const ProductPage = ({match: {params: { id, category }}}) => {
   return (
     <>
     <NavBar />
-    <div className='productPageWrapper'>
-      <div className='productPageImage'>
-        <img src={product.image} alt='product'/>
+    { singleProductLoader
+    ? (
+      <div className='productPageLoader'>
+        <CommonLoader height={70} width={70}/>
       </div>
-      <div className='detailsWrapper'>
-        <div className='productPageTitle'>{product.title}</div>
-        <div className='productPagePrice'>Price: ${product.price}</div>
-        <CommonButton btnClass='card-add-to-cart'>add</CommonButton>
-        <CommonButton btnClass='card-add-to-cart'>buy</CommonButton>
-        <div className='productPageDescription'>
-          <div>
-            Product Description
-          </div>
-          <div>
-            {product.description}
+    )
+    : (
+        <div className='productPageWrapper'>
+        <div className='productPageImage'>
+          <img src={product.image} alt='product'/>
+        </div>
+        <div className='detailsWrapper'>
+          <div className='productPageTitle'>{product.title}</div>
+          <div className='productPagePrice'>Price: ${product.price}</div>
+          <div className='productPageDescription'>
+            <span style={{fontWeight:'bold', marginRight:'10px'}}>
+              Product Description
+            </span>
+              {product.description}
           </div>
         </div>
+        <div className='productPageNextStep'>
+          <div className='productPageMainPrice'>Price ${product.price}</div>
+          <CommonButton btnClass='card-add-to-cart'>Add To Cart</CommonButton>
+          <CommonButton btnClass='card-buy-now'>Buy Now</CommonButton>
+        </div>
       </div>
-    </div>
-    </>
+    )
+  }
+  </>
   )
 }
 
