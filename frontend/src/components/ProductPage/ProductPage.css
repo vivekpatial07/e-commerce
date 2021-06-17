@@ -40,7 +40,7 @@
 
 .productPageNextStep {
   flex-basis: 300px;
-  margin: 10px 25px;
+  margin: 25px 25px;
 }
 
 .productPageLoader {
@@ -53,4 +53,6 @@
 
 .productPageMainPrice {
   border: 1px solid lightgray;
+  height: 50px;
+  line-height: 50px;
 }

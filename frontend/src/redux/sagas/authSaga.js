@@ -5,7 +5,7 @@ import { loginSuccess, logoutFailure, logoutSuccess, signupSuccess } from '../ac
 export function* signupSaga(data) {
   yield console.log(data, 'signup')
   
-  const response = yield axios.post('http://localhost:7000/ecomm/users/signup', data.payload)
+  const response = yield axios.post('/ecomm/users/signup', data.payload)
   console.log(response)
   try {
     yield put(signupSuccess())
@@ -19,7 +19,7 @@ export function* signupSaga(data) {
 export function* loginSaga(data) {
   yield console.log(data, 'login')
 
-  const response = yield axios.post('http://localhost:7000/ecomm/users/login', data.payload)
+  const response = yield axios.post('/ecomm/users/login', data.payload)
   console.log(response)
   try {
     yield put(loginSuccess())

@@ -3,7 +3,7 @@ import { put } from 'redux-saga/effects'
 import { getAllProductsSuccess, getSingleProductSuccess } from '../actionCreators/productCreators'
 
 export function* getAllProductsSaga(data) {
-  const response = yield axios.get('http://localhost:7000/ecomm/products/')
+  const response = yield axios.get('/ecomm/products/')
   try {
     yield put(getAllProductsSuccess(response.data))
   } catch (error) {
@@ -13,7 +13,7 @@ export function* getAllProductsSaga(data) {
 
 export function* getSingleProductSaga(data) {
   const id = data.payload
-  const response = yield axios.get(`http://localhost:7000/ecomm/products/single-product/${id}`)
+  const response = yield axios.get(`/ecomm/products/single-product/${id}`)
 
   try {
     yield put(getSingleProductSuccess(response.data))
