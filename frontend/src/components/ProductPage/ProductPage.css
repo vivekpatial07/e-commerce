@@ -1,5 +1,6 @@
 .productPageWrapper{
   display: flex;
+  justify-content: space-around;
 }
 
 .productPageImage > img {
@@ -26,16 +27,13 @@
 
 .productPageDescription {
   border-top: 1px solid lightgray;
-  margin: 10px 0;
-  padding: 10px 0;
-}
-
-.productPagePrice {
-  border-top: 1px solid lightgray;
   border-bottom: 1px solid lightgray;
-  padding: 10px;
   margin: 10px 0;
-  /* width: 150px; */
+  padding: 20px 0;
+  color: grey;
+  text-align: start;
+  letter-spacing: 0.1em;
+  line-height: 30px;
 }
 
 .productPageNextStep {
@@ -50,9 +48,13 @@
   justify-content: center;
 }
 
-
 .productPageMainPrice {
   border: 1px solid lightgray;
   height: 50px;
   line-height: 50px;
+}
+
+.productPageBtnWrapper {
+  display: flex;
+  justify-content: center;
 }

@@ -35,18 +35,16 @@ const ProductPage = ({match: {params: { id, category }}}) => {
         </div>
         <div className='detailsWrapper'>
           <div className='productPageTitle'>{product.title}</div>
-          <div className='productPagePrice'>Price: ${product.price}</div>
           <div className='productPageDescription'>
-            <span style={{fontWeight:'bold', marginRight:'10px'}}>
-              Product Description
-            </span>
-              {product.description}
+            {product.description}
+          </div>
+          <div className='productPageNextStep'>
+          <div className='productPageMainPrice'>Price ${product.price}</div>
+          <div className='productPageBtnWrapper'>
+            <CommonButton btnClass='card-add-to-cart'>Add To Cart</CommonButton>
+            <CommonButton btnClass='card-buy-now'>Buy Now</CommonButton>
           </div>
         </div>
-        <div className='productPageNextStep'>
-          <div className='productPageMainPrice'>Price ${product.price}</div>
-          <CommonButton btnClass='card-add-to-cart'>Add To Cart</CommonButton>
-          <CommonButton btnClass='card-buy-now'>Buy Now</CommonButton>
         </div>
       </div>
     )
