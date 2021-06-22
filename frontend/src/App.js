@@ -4,6 +4,7 @@ import Login from './components/Auth/Login/Login';
 import Signup from './components/Auth/Signup/Signup';
 import Home from './components/Home/Home';
 import ProductPage from './components/ProductPage/ProductPage';
+import CartPage from './components/Cart/CartPage/CartPage';
 // import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path='/login' component={Login}/>
           <Route path='/signup' component={Signup}/>
           <Route path='/ecommerce/product/:category/:id' component={ProductPage}/>
+          <Route path='/ecommerce/cart' component={CartPage}/>
           <Route path='/ecommerce' component={Home}/>
           <Redirect from="/" to="/ecommerce" />
           

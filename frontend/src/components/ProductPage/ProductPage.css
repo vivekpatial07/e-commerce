@@ -58,3 +58,10 @@
   display: flex;
   justify-content: center;
 }
+
+.cartPopupWrapper {
+  background: rgba(0, 0, 0, 0.2);
+  height: 93vh;
+  width: 100vw;
+  position: absolute;
+}

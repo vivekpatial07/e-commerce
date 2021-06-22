@@ -1,0 +1,25 @@
+
+.PopupContainer {
+  background: #FFFFFF;
+  height: 500px;
+  margin: auto;
+  transform: translateY(10%);
+  border-radius: 5px 5px;
+  width: 500px;
+  box-shadow: 0 0 1px 1px lightgray;
+}
+
+.cartPopupCounter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartInput {
+  height: 25px;
+  border: 0.5px solid #77C9D0;
+  outline: none;
+  cursor: default;
+  caret-color: transparent;
+  text-align: center;
+}

@@ -4,12 +4,14 @@ import { loginReducer, signUpReducer } from './reducers/authReducer'
 import createSagaMiddleware from 'redux-saga'
 import watcherSaga from './sagas/watcherSaga'
 import { productsReducer, singleProductReducer } from './reducers/productsReducer'
+import { cartReducer } from './reducers/cartReducer'
 
 const reducer = combineReducers({
   signUp: signUpReducer,
   login: loginReducer,
   products: productsReducer,
-  singleProduct: singleProductReducer
+  singleProduct: singleProductReducer,
+  cart: cartReducer
 })
 
 const sagaMiddleware = createSagaMiddleware()

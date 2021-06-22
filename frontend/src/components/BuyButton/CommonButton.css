@@ -41,5 +41,8 @@
 
 .card-buy-now:hover {
   background-color: #5ecc9c;
+}
 
+.counterBtn {
+  background-color: #77C9D4;
 }

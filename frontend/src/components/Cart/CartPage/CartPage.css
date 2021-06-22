@@ -1,0 +1,21 @@
+.cartPageContainer {
+  display: flex;
+  margin: 20px;
+  justify-content: space-around;
+}
+
+
+.cartPageLeftInfo {
+  overflow-y: auto !important;
+  height: 70vh;
+}
+.cartPageRightInfo {
+  margin: 0 20px;
+}
+
+.cartpageLoader {
+  height: 77vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

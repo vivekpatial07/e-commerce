@@ -19,9 +19,11 @@ const NavBar = ({history}) => {
       </div>
       <div className='left-items'>
         <div onClick={logoutHandler}>
-          {user?.username ? `Welcome! ${user.username}` : 'Login'}
+          {user?.username
+            ? <div>Welcome! {user.username}</div>
+            : <div onClick={()=>history.push('/login')}>Login</div>}
         </div>
-        <div>
+        <div onClick={()=> history.push('/ecommerce/cart')}>
           Cart
         </div>
       </div>
