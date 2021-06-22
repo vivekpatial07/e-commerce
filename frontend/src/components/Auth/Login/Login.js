@@ -1,18 +1,19 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import AuthLogo from '../../../Assets/AuthAssets/AuthLogo/AuthLogo'
 // import LoginSvg from '../../../Assets/AuthAssets/LoginSvg/LoginSvg'
 import { loginInitiate } from '../../../redux/actionCreators/authCreators'
 import './Login.css'
 import { requiredValidate, emailValid, createPasswordValidate } from '../../../utils/validations'
 
-const Login = () => {
+const Login = (props) => {
 
   const [data, setData] = useState({})
   const [errors, setErrors] = useState({})
   
   const dispatch = useDispatch()
-
+  const { redirect } = useSelector(state => state.login)
+  console.log(redirect)
   const changeHandler = (e) => {
     const newData = {...data}
     newData[e.target.name] = e.target.value
@@ -35,8 +36,13 @@ const Login = () => {
     } else {
       setErrors(errorsObject)
     }
-
   }
+
+  useEffect(()=>{
+    if(redirect) {
+      props.history.push('/ecommerce')
+    }
+  },[props.history, redirect])
 
   return (
     <div className="mainWrapper">

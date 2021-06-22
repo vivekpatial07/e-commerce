@@ -1,31 +1,69 @@
 import axios from 'axios'
 import { put } from 'redux-saga/effects'
-import { loginSuccess, logoutFailure, logoutSuccess, signupSuccess } from '../actionCreators/authCreators'
+import { loginFailure, loginSuccess, logoutFailure, logoutSuccess, signupSuccess } from '../actionCreators/authCreators'
+import { toast } from 'react-toastify'
+
+
+/*---------------------------signup------------------------------- */
 
 export function* signupSaga(data) {
-  yield console.log(data, 'signup')
-  
-  const response = yield axios.post('/ecomm/users/signup', data.payload)
-  console.log(response)
+
   try {
-    yield put(signupSuccess())
+    const response = yield axios.post('/ecomm/users/signup', data.payload)
     localStorage.setItem('userInfo', JSON.stringify(response.data))
+    yield put(signupSuccess())
+
+    toast.success(`Welcome! ${response.data.username}`, {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      // progress: ,
+    })
+
   } catch (error) {
-    console.log(error,'error')
+    toast.error(error.response.data, {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      // progress: ,
+    });
   }
 }
 
+/*---------------------------login------------------------------- */
 
 export function* loginSaga(data) {
-  yield console.log(data, 'login')
-
-  const response = yield axios.post('/ecomm/users/login', data.payload)
-  console.log(response)
   try {
-    yield put(loginSuccess())
+    const response = yield axios.post('/ecomm/users/login', data.payload)
     localStorage.setItem('userInfo', JSON.stringify(response.data))
+    yield put(loginSuccess())
+  
+    toast.success(`Welcome! ${response.data.username}`, {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      // progress: ,
+    })
   } catch(error) {
-    console.log(error,'error')
+    yield put(loginFailure(error.response.data))
+    toast.error(error.response.data, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        // progress: ,
+        });
   }
 }
 

@@ -1,17 +1,19 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import AuthLogo from '../../../Assets/AuthAssets/AuthLogo/AuthLogo'
 // import SignupSvg from '../../../Assets/AuthAssets/SignupSvg/SignupSvg'
 import { signupInitiate } from '../../../redux/actionCreators/authCreators'
 import './Signup.css'
 import { requiredValidate, emailValid, createPasswordValidate } from '../../../utils/validations'
 
-const Signup = () => {
+const Signup = ({ history }) => {
 
   const [data, setData] = useState({})
   const [errors, setErrors] = useState({})
 
   const dispatch = useDispatch()
+  const { redirect } = useSelector(state => state.signUp)
+
 
   const changeHandler = (e) => {
     const newData = {...data}
@@ -19,7 +21,7 @@ const Signup = () => {
     setData(newData)
   }
   
-  const submitHandler = (e) => {
+  const submitHandler = async(e) => {
     e.preventDefault()
     
     const {username, email, password} = data
@@ -32,7 +34,10 @@ const Signup = () => {
 
     if (!errorsObject.username && !errorsObject.password && !errorsObject.email) {
       setErrors({})
-      dispatch(signupInitiate({...data}))
+      await dispatch(signupInitiate({...data}))
+      
+      if(localStorage.getItem('userInfo')) history.push('/ecommerce')
+    
     } else {
       setErrors(errorsObject)
     }
@@ -49,6 +54,13 @@ const Signup = () => {
   //     return ""
   //   }
   // })
+
+
+  useEffect(()=>{
+    if(redirect) {
+      history.push('/ecommerce')
+    }
+  },[history, redirect])
 
   return (
     <div className='main-wrapper'>

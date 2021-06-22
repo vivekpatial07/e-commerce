@@ -1,12 +1,13 @@
 import { authActions } from '../actionTypes'
 
 const authState = {
-  authloader: false
+  authloader: false,
+  redirect: false
 }
 
 export const signUpReducer = (state=authState, action) => {
   switch(action.type) {
-    
+ 
     case authActions.SIGNUPINITIATE:
       return {
         ...state,
@@ -16,9 +17,10 @@ export const signUpReducer = (state=authState, action) => {
     case authActions.SIGNUPSUCCESS:
       return {
         ...state,
-        authloader: false
+        authloader: false,
+        redirect: true
       }
-    
+
     case authActions.SIGNUPFAILURE:
       return {
         ...state,
@@ -34,7 +36,7 @@ export const signUpReducer = (state=authState, action) => {
 
 export const loginReducer = (state=authState, action) => {
   switch(action.type) {
-    
+
     case authActions.LOGININITIATE:
       return {
         ...state,
@@ -44,7 +46,8 @@ export const loginReducer = (state=authState, action) => {
     case authActions.LOGINSUCCESS:
       return {
         ...state,
-        authloader: false
+        authloader: false,
+        redirect: true
       }
 
     case authActions.LOGINFAILURE:
@@ -52,7 +55,7 @@ export const loginReducer = (state=authState, action) => {
         ...state,
         authloader: false
       }
-      
+
     case authActions.LOGOUTINITIATE:
       return {
         ...state,
@@ -70,7 +73,7 @@ export const loginReducer = (state=authState, action) => {
         ...state,
         authloader: false
       }
-        
+
     default:
       return {
         ...state
