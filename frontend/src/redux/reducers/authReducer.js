@@ -65,7 +65,8 @@ export const loginReducer = (state=authState, action) => {
     case authActions.LOGOUTSUCCESS:
       return {
         ...state,
-        authloader: false
+        authloader: false,
+        redirect: false
       }
 
     case authActions.LOGOUTFAILURE:
