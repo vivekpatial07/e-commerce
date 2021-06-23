@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+// import React, { useState } from 'react'
+// import { useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { logoutInitiate } from '../../redux/actionCreators/authCreators'
+// import { logoutInitiate } from '../../redux/actionCreators/authCreators'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
@@ -10,7 +10,7 @@ import './NavBar.css'
 
 const NavBar = ({history}) => {
   const user = JSON.parse(localStorage.getItem('userInfo'))
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   // const [cartCounter, setCartCounter] = useState()
 
   const cartItems = JSON.parse(localStorage.getItem('cartInfo'))
@@ -36,11 +36,13 @@ const NavBar = ({history}) => {
       <div className='left-items'>
         <div 
           // onClick={() => setShowDrop(!showDrop)}
-          onClick={() => history.push('/ecommerce/user')}
         >
           {user?.username
             ? (
-              <div>
+              <div
+          onClick={() => history.push('/ecommerce/user/profile')}
+               
+               >
                 <FontAwesomeIcon icon={faUser}/>
                 {/* {showDrop && drop} */}
                </div>

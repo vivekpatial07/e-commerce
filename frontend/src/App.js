@@ -7,6 +7,7 @@ import ProductPage from './components/ProductPage/ProductPage';
 import CartPage from './components/Cart/CartPage/CartPage';
 import AddressPage from './components/AddressPage/AddressPage';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import Profile from './components/Profile/Profile';
 
 function App() {
 
@@ -20,9 +21,10 @@ function App() {
           <Route path='/ecommerce/product/:category/:id' component={ProductPage}/>
           <Route path='/ecommerce/cart' component={CartPage}/>
           <ProtectedRoute path='/ecommerce/placeOrder' component={AddressPage}/>
+          <Route path='/ecommerce/user/profile' component={Profile}/>
           <Route path='/ecommerce' component={Home} exact/>
 
-          <Redirect from="/" to="/ecommerce" />
+          <Redirect from="/" to="/ecommerce"/>
           
           {/* <Redirect
                 from="/"

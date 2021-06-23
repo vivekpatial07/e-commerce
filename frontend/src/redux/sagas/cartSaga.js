@@ -1,17 +1,40 @@
 import axios from 'axios'
+import { toast } from 'react-toastify'
 import { put } from 'redux-saga/effects'
 import { getCartItemsSuccess } from '../actionCreators/cartCreators'
 
 export function* getCartItemsSaga(data) {
   const user = JSON.parse(localStorage.getItem('userInfo'))
-  let cartItems = []
+
   let products = []
+  let cartItems = JSON.parse(localStorage.getItem('cartInfo'))
 
   if(user){
-    localStorage.removeItem('cartInfo')
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`
+      }
+    }
+    try {
+      const response = yield axios.post('/ecomm/order/cart/push', JSON.stringify(cartItems), config)
+      console.log(response)
+      // localStorage.removeItem('cartInfo')
+      
+    } catch (error) {
+      console.log(error.response.data)
+        toast.warning('You need to log in Again', {
+        position:'top-center',
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      })
+    }
     yield console.log('to be done')
   } else {
-    cartItems = JSON.parse(localStorage.getItem('cartInfo'))
     const response = yield axios.post('/ecomm/order/cart',cartItems)
 
     //brute force approach for now
@@ -32,3 +55,16 @@ export function* getCartItemsSaga(data) {
     console.log(error)
   }
 }
+
+
+// export function* pushCartToDBSaga() {
+
+//   const cartItems = localStorage.getItem('cartInfo')
+
+//   try {
+//     const response = axios.post('/ecomm/order/cart', cartI)
+//   } catch (error) {
+    
+//   }
+
+// }

@@ -13,7 +13,7 @@ const Login = (props) => {
   
   const dispatch = useDispatch()
   const { redirect } = useSelector(state => state.login)
-  console.log(redirect)
+
   const changeHandler = (e) => {
     const newData = {...data}
     newData[e.target.name] = e.target.value

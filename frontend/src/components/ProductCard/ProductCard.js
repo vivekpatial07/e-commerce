@@ -2,6 +2,11 @@ import React from 'react'
 import './ProductCard.css'
 import CommonButton from '../BuyButton/CommonButton'
 import { withRouter } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { useDispatch } from 'react-redux'
+import { getCartItemsInitiate } from '../../redux/actionCreators/cartCreators'
+
+
 const ProductCard = ({
   id,
   image,
@@ -11,14 +16,70 @@ const ProductCard = ({
   history,
   match: { path }
 }) => {
-
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+ 
+  const dispatch = useDispatch()
+ 
   const buyNowHandler = (e) => {
     console.log('buy now')
+
+    if(!userInfo) {
+
+      toast.warning('You need to log in first', {
+        position:'top-center',
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      })
+      history.push('/login')
+    }
+
+
+    history.push('/ecommerce/placeOrder')
   }
 
-  const addToCartHandler = (e) => {
-    console.log('add to card')
+
+  const addToCartHandler = () => {
+    // const dataToBeAdded = id
+  //id should be passed down through the argument not like this.... will fix this later
+    const cartItems =  JSON.parse(localStorage.getItem('cartInfo'))
+    // if(userInfo){}
+    if(cartItems) {
+      const itmIndex = cartItems.findIndex(itm => itm.product_id===id)
+      console.log(itmIndex)
+      if(itmIndex === -1) {
+        cartItems.push({product_id:id,qty:1})
+      } else {
+        cartItems[itmIndex].qty+=1 
+      }
+      console.log(cartItems)
+      localStorage.setItem('cartInfo', JSON.stringify(cartItems))
+    } else {
+      const cartItems = []
+      cartItems.push({product_id:id, qty:1})
+      console.log(cartItems)
+    
+    
+      localStorage.setItem('cartInfo', JSON.stringify(cartItems))
+    
+    }
+    // setShowCart(true)
+    if(!userInfo) {
+      toast.success('Product added to Cart!', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      })
+    }
+    
+    dispatch(getCartItemsInitiate())
   }
+ 
 
   const goToProduct = () => {
     history.push(`${path}/product/${category}/${id}`)
