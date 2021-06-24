@@ -6,10 +6,11 @@ import NavBar from '../../NavBar/NavBar'
 import CommonLoader from '../../CommonLoader/CommonLoader'
 import CommonButton from '../../BuyButton/CommonButton'
 import ProductInCart from './ProductInCart/ProductInCart'
+import { toast } from 'react-toastify'
 import './CartPage.css'
 
 const CartPage = ({ history }) => {
-  
+  const user = localStorage.getItem('userInfo') 
   // const [totalPrice, setTotalPrice] = useState()
   const dispatch = useDispatch()
   const { cartItems, cartItemLoader } = useSelector(allCartData)
@@ -17,11 +18,9 @@ const CartPage = ({ history }) => {
     dispatch(getCartItemsInitiate())
   }, [dispatch])
 
-  
   const buyNowHandler = () => {
     history.push('/ecommerce/placeOrder')
   }
-  
   
   console.log(cartItems)
   const productsInCart = cartItems.map((itm) =>  <ProductInCart product={itm} key={itm._id}/>)
@@ -31,7 +30,20 @@ const CartPage = ({ history }) => {
     return acc + Number(curr.price*curr.qty)
   },0)
   
-  
+  const renderProducts = ( 
+    <>
+       <div className='cartPageLeftInfo'>
+          <h2>Products</h2>
+          {productsInCart}
+        </div>
+        <div className='cartPageRightInfo'>
+          <h2>Price</h2>
+          ${totalprice.toFixed(2)}
+          <CommonButton btnClass='card-buy-now' onClick={buyNowHandler}>Buy Now</CommonButton>
+          <CommonButton btnClass='card-add-to-cart'>Add to wishlist</CommonButton>
+        </div>
+    </>
+  )
 
   // console.log(totalPrice)
 
@@ -47,16 +59,7 @@ const CartPage = ({ history }) => {
           <div>
             <div style={{fontSize:'36px', fontWeight:'200', textAlign:'center'}}>Cart</div>
             <div className='cartPageContainer'>
-              <div className='cartPageLeftInfo'>
-                <h2>Products</h2>
-                {productsInCart}
-              </div>
-              <div className='cartPageRightInfo'>
-              <h2>Price</h2>
-                ${totalprice.toFixed(2)}
-                <CommonButton btnClass='card-buy-now' onClick={buyNowHandler}>Buy Now</CommonButton>
-                <CommonButton btnClass='card-add-to-cart'>Add to wishlist</CommonButton>
-              </div>
+             {productsInCart.length>0 ? renderProducts : <div>Your cart is empty</div> }
               </div>
           </div>
         )

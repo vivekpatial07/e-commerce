@@ -22,7 +22,7 @@ const ProductInCart = ({ product: { _id, qty, image, price, title, category }}) 
       // dispatch(  )
 
     if(cartItems) {
-      const itmIndex = cartItems.findIndex(itm => itm.id===_id)
+      const itmIndex = cartItems.findIndex(itm => itm.product_id===_id)
 
       if(itmIndex === -1) {
         cartItems.push({id: _id,qty:1})
@@ -46,7 +46,7 @@ const ProductInCart = ({ product: { _id, qty, image, price, title, category }}) 
       if(quantity>1) setQuantity(quantity-1)
 
       if(cartItems) {
-        const itmIndex = cartItems.findIndex(itm => itm.id===_id)
+        const itmIndex = cartItems.findIndex(itm => itm.product_id===_id)
   
         if(itmIndex !== -1 && cartItems.length > 0 ) {
           if(cartItems[itmIndex].qty === 1) {

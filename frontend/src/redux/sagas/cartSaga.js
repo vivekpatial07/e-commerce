@@ -3,6 +3,7 @@ import { toast } from 'react-toastify'
 import { put } from 'redux-saga/effects'
 import { getCartItemsSuccess } from '../actionCreators/cartCreators'
 
+
 export function* getCartItemsSaga(data) {
   const user = JSON.parse(localStorage.getItem('userInfo'))
 
@@ -20,7 +21,15 @@ export function* getCartItemsSaga(data) {
     try {
       const response = yield axios.post('/ecomm/order/cart/push', JSON.stringify(cartItems), config)
       console.log(response)
-      // localStorage.removeItem('cartInfo')
+      products = response.data
+      products.forEach(prod => {
+        cartItems.forEach(itm => {
+          if(itm.product_id===prod._id){
+            prod.qty = itm.qty
+          }
+        })
+      })
+      yield put(getCartItemsSuccess(response.data))
       
     } catch (error) {
       console.log(error.response.data)
@@ -33,38 +42,26 @@ export function* getCartItemsSaga(data) {
         draggable: true,
       })
     }
-    yield console.log('to be done')
   } else {
-    const response = yield axios.post('/ecomm/order/cart',cartItems)
-
+    console.log('if no user')
     //brute force approach for now
-
-    products = response.data
-    products.forEach(prod => {
-      cartItems.forEach(itm => {
-        if(itm.id===prod._id){
-          prod.qty = itm.qty
-        }
+    if(cartItems){
+      const response = yield axios.post('/ecomm/order/cart',cartItems)
+      
+      products = response.data
+      products.forEach(prod => {
+        cartItems.forEach(itm => {
+          if(itm.product_id===prod._id){
+            prod.qty = itm.qty
+          }
+        })
       })
-    })
-
-  }
-  try {
-    yield put(getCartItemsSuccess(products))
-  } catch (error) {
-    console.log(error)
+    }
+    try {
+      console.log(products)
+      yield put(getCartItemsSuccess(products))
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
-
-
-// export function* pushCartToDBSaga() {
-
-//   const cartItems = localStorage.getItem('cartInfo')
-
-//   try {
-//     const response = axios.post('/ecomm/order/cart', cartI)
-//   } catch (error) {
-    
-//   }
-
-// }
