@@ -66,7 +66,7 @@ const ProductCard = ({
     
     }
     // setShowCart(true)
-    if(!userInfo) {
+   
       toast.success('Product added to Cart!', {
         position: "top-center",
         autoClose: 2000,
@@ -75,7 +75,7 @@ const ProductCard = ({
         pauseOnHover: true,
         draggable: true,
       })
-    }
+    
     
     dispatch(getCartItemsInitiate())
   }

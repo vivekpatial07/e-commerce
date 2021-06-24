@@ -2,13 +2,11 @@ const Product = require('../models/productModel')
 const Order = require('../models/orderModel') 
 
 const getCartItems = async(req, res) => {
-  console.log(req.body, 'one')
   try {
    
     if(req.body){
       const productsId = req.body.map(itm => itm.product_id)
       const products = await Product.find({_id: productsId})
-      console.log(products, 'two')
       res.status(201).json(products)
     } else {
       res.status(201).json('no product found')
@@ -50,10 +48,8 @@ const pushCartItems = async(req, res, next) => {
 
 
 const fetchUserProds = async(req, res) => {
-  // console.log(req.user_products,'running')
   const prodIds = req.user_products.products.map(itm=>itm.product_id)
   const userprod = await Product.find({_id: prodIds})
-  console.log(userprod,'s')
   res.status(201).json(userprod)
 
 }

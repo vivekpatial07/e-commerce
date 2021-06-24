@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { getCartItemsInitiate } from '../../../../redux/actionCreators/cartCreators'
 import CounterBtn from '../../../CounterBtn/CounterBtn'
+import { toast } from 'react-toastify'
 import './ProductInCart.css'
 
 const ProductInCart = ({ product: { _id, qty, image, price, title, category }}) => {
@@ -40,8 +41,18 @@ const ProductInCart = ({ product: { _id, qty, image, price, title, category }}) 
     
       
       dispatch(getCartItemsInitiate())
+      
+     
       localStorage.setItem('cartInfo', JSON.stringify(cartItems))
     }
+    toast.success('Product added to Cart!', {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    })
     } else {
       if(quantity>1) setQuantity(quantity-1)
 
@@ -59,6 +70,14 @@ const ProductInCart = ({ product: { _id, qty, image, price, title, category }}) 
             localStorage.setItem('cartInfo', JSON.stringify(cartItems))
             dispatch(getCartItemsInitiate())
           }
+          toast.info('Product removed to Cart!', {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          })
       
       } 
         // const cartItems = []

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { put } from 'redux-saga/effects'
-import { getCartItemsSuccess } from '../actionCreators/cartCreators'
+import { getCartItemsInitiate, getCartItemsSuccess } from '../actionCreators/cartCreators'
 
 
 export function* getCartItemsSaga(data) {
@@ -33,7 +33,8 @@ export function* getCartItemsSaga(data) {
       
     } catch (error) {
       console.log(error.response.data)
-        toast.warning('You need to log in Again', {
+      localStorage.removeItem('userInfo')
+      toast.warning('You need to log in Again', {
         position:'top-center',
         autoClose: 2000,
         hideProgressBar: true,
@@ -41,6 +42,8 @@ export function* getCartItemsSaga(data) {
         pauseOnHover: true,
         draggable: true,
       })
+      yield put(getCartItemsInitiate())
+      
     }
   } else {
     console.log('if no user')
