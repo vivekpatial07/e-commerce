@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCartItemsInitiate } from '../../../redux/actionCreators/cartCreators'
 import { allCartData } from '../../../redux/selectors/cartSelector'
@@ -6,11 +6,10 @@ import NavBar from '../../NavBar/NavBar'
 import CommonLoader from '../../CommonLoader/CommonLoader'
 import CommonButton from '../../BuyButton/CommonButton'
 import ProductInCart from './ProductInCart/ProductInCart'
-import { toast } from 'react-toastify'
 import './CartPage.css'
 
 const CartPage = ({ history }) => {
-  const user = localStorage.getItem('userInfo') 
+  // const user = localStorage.getItem('userInfo') 
   // const [totalPrice, setTotalPrice] = useState()
   const dispatch = useDispatch()
   const { cartItems, cartItemLoader } = useSelector(allCartData)
