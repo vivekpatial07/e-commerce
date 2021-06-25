@@ -59,3 +59,9 @@ export const logoutFailure = () => {
     type: authActions.LOGOUTFAILURE
   }
 }
+
+// export const goToAuthPage = () => {
+//   return {
+//     type: authActions.GO
+//   }
+// }

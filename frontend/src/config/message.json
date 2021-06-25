@@ -5,7 +5,8 @@
     "email_invalid": "* Invalid email",
     "name": "* Invalid name",
     "password": "* Must be at least 7 characters long.",
-    "email_exists": "User with given email is already registered"
+    "email_exists": "User with given email is already registered",
+    "zip_code_invalid": "Zip Code is Invalid"
   },
   "successMessage": {
     "loginSuccessful": "welcome!"

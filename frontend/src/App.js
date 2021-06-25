@@ -8,6 +8,7 @@ import CartPage from './components/Cart/CartPage/CartPage';
 import AddressPage from './components/AddressPage/AddressPage';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Profile from './components/Profile/Profile';
+import PaymentPage from './components/PaymentPage/PaymentPage';
 
 function App() {
 
@@ -20,7 +21,8 @@ function App() {
           <Route path='/signup' component={Signup}/>
           <Route path='/ecommerce/product/:category/:id' component={ProductPage}/>
           <Route path='/ecommerce/cart' component={CartPage}/>
-          <ProtectedRoute path='/ecommerce/placeOrder' component={AddressPage}/>
+          <ProtectedRoute path='/ecommerce/placeOrder/pay' component={PaymentPage}/>
+          <ProtectedRoute path='/ecommerce/placeOrder' component={AddressPage} exact/>
           <Route path='/ecommerce/user/profile' component={Profile}/>
           <Route path='/ecommerce' component={Home} exact/>
 

@@ -22,7 +22,12 @@ const orderSchema = mongoose.Schema({
     ref: 'User',
     required: true
   },
-  products: [productsInCart]
+  products: [productsInCart],
+  mainAddress: {type: String},
+  landmark: {type: String},
+  city: {type: String},
+  state: {type: String},
+  pincode: {type: String}
 
 })
 

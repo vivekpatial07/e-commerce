@@ -31,7 +31,7 @@ const pushCartItems = async(req, res, next) => {
   if(!orderIdExists) {
     
     const orderCreated = Order.create({
-      customer_id: req.user.id,
+      customer_id: req.user._id,
       products: products
     })
     req.user_products = orderCreated
@@ -54,10 +54,39 @@ const fetchUserProds = async(req, res) => {
 
 }
 
+const addAddress = async(req, res) => {
+  console.log(req.body)
+  const order = await Order.findOne({customer_id: req.user._id})
+  order.mainAddress = req.body.mainAddress
+  order.city = req.body.city
+  order.state = req.body.state
+  order.pincode = req.body.pincode
+  order.landmark = req.body.landmark
+  // console.log(order)
+  order.save()
+}
 
+const fetchAddress = async(req, res) => {
+  console.log('running', req.user)
+  const address = {}
+  const order = await Order.findOne({ customer_id: req.user._id })
+  
+  address.mainAddress = order.mainAddress
+  address.city = order.city
+  address.landmark = order.landmark
+  address.pincode = order.pincode
+  address.state = order.state
+  // will use populate in future 
+  // .populate({customer_id: req.user._id}, 'city')
+
+  res.status(201).json(address)
+
+}
 
 module.exports = {
   getCartItems,
   pushCartItems,
-  fetchUserProds
+  fetchUserProds,
+  addAddress,
+  fetchAddress
 }

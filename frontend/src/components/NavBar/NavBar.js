@@ -6,13 +6,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import './NavBar.css'
+// import { useDispatch } from 'react-redux'
 
 
 const NavBar = ({history}) => {
   const user = JSON.parse(localStorage.getItem('userInfo'))
   // const dispatch = useDispatch()
   // const [cartCounter, setCartCounter] = useState()
-
+  // const dispatch = useDispatch()
   const cartItems = JSON.parse(localStorage.getItem('cartInfo'))
 
   const num = cartItems && cartItems.reduce((acc, curr) => acc+curr.qty,0)
@@ -47,7 +48,10 @@ const NavBar = ({history}) => {
                 {/* {showDrop && drop} */}
                </div>
             )
-            : <div onClick={()=>history.push('/login')}>Login</div>}
+            : <div onClick={()=>{
+                // dispatch()
+                history.push('/login')
+              }}>Login</div>}
         </div>
         <div onClick={()=> history.push('/ecommerce/cart')}>
           <FontAwesomeIcon style={{position:'relative'}} icon={faShoppingCart}/><span style={{position: 'absolute', top:'10px'}}>{num}</span>

@@ -9,8 +9,7 @@ import ProductInCart from './ProductInCart/ProductInCart'
 import './CartPage.css'
 
 const CartPage = ({ history }) => {
-  // const user = localStorage.getItem('userInfo') 
-  // const [totalPrice, setTotalPrice] = useState()
+  
   const dispatch = useDispatch()
   const { cartItems, cartItemLoader } = useSelector(allCartData)
   useEffect(() => {
@@ -21,7 +20,6 @@ const CartPage = ({ history }) => {
     history.push('/ecommerce/placeOrder')
   }
   
-  console.log(cartItems)
   const productsInCart = cartItems.map((itm) =>  <ProductInCart product={itm} key={itm._id}/>)
   let totalprice = 0
 
@@ -43,8 +41,6 @@ const CartPage = ({ history }) => {
         </div>
     </>
   )
-
-  // console.log(totalPrice)
 
   return (
     <>

@@ -19,7 +19,7 @@ const Login = (props) => {
     newData[e.target.name] = e.target.value
     setData(newData)
   }
-  
+  console.log(props)
   const submitHandler = (e) => {
     e.preventDefault()
 
@@ -40,6 +40,7 @@ const Login = (props) => {
 
   useEffect(()=>{
     if(redirect) {
+      // props.history.goBack()
       props.history.push('/ecommerce')
     }
   },[props.history, redirect])

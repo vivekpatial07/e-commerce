@@ -8,7 +8,6 @@ export const getCartItemsInitiate = () => {
 
 
 export const getCartItemsSuccess = (data) => {
-  console.log(data)
   return {
     type: cartActions.GET_CART_ITEMS_SUCCESS,
     payload: data

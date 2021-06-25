@@ -1,0 +1,45 @@
+.addressWrapper {
+  border: 1px solid lightgray;
+  height: 500px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.addressWrapper > input {
+  height: 25px;
+  width: 390px;
+  margin: 15px auto;
+  box-shadow: 0px 1px 4px 0 grey;
+  border: none;
+  outline: none;
+  padding: 10px;
+  caret-color: #77C9D4; 
+}
+
+.addressWrapper > button {
+  height: 30px;
+  width: 350px;
+  background-color: #77C9D4;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0px 1px 4px 0 grey;
+  margin: 10px auto;
+  color: #FFFFFF;
+  outline: none;
+}
+
+.addressWrapper > button:hover {
+  cursor: pointer;
+  background-color: #94d7e0 ;
+}
+
+.error {
+  border-bottom: 1px solid rgb(192, 44, 44) !important;
+}
+
+.error::-webkit-input-placeholder { /* Webkit */
+  color:  rgb(192, 44, 44) !important;
+  padding: 10px;
+}

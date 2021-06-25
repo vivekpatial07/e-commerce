@@ -5,13 +5,15 @@ import createSagaMiddleware from 'redux-saga'
 import watcherSaga from './sagas/watcherSaga'
 import { productsReducer, singleProductReducer } from './reducers/productsReducer'
 import { cartReducer } from './reducers/cartReducer'
+import { checkoutReducer } from './reducers/checkoutReducer'
 
 const reducer = combineReducers({
   signUp: signUpReducer,
   login: loginReducer,
   products: productsReducer,
   singleProduct: singleProductReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  checkout: checkoutReducer
 })
 
 const sagaMiddleware = createSagaMiddleware()

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { getCartItemsInitiate } from '../../../../redux/actionCreators/cartCreators'
 import CounterBtn from '../../../CounterBtn/CounterBtn'
@@ -10,10 +10,6 @@ const ProductInCart = ({ product: { _id, qty, image, price, title, category }}) 
   const [quantity, setQuantity] = useState(qty)
 
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    console.log('running')
-  }, [])
 
   const counterHandler = async(e) => {
     const cartItems =  JSON.parse(localStorage.getItem('cartInfo'))

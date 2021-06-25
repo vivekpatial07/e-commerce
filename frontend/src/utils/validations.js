@@ -50,3 +50,16 @@ export const createPasswordValidate = (password) => {
 
   return message
 }
+
+export const numericValidate = (num) => {
+  let message = ''
+  var reg = /^-?\d+\.?\d*$/
+  
+  if(num.length < 1){
+    message = errorMessage.required
+  } else if(num.length !== 6 && reg.test(String(num).toLowerCase())) {
+    message = errorMessage.zip_code_invalid
+  }
+  
+  return message
+}
