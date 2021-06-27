@@ -87,10 +87,15 @@ const fetchAddress = async(req, res) => {
 }
 
 const doPayment = async(req, res) => {
-  // console.log(req.body)
-  const { cartItems } = req.body
+  
+  const cartItems = req.body.items
+  
+  const totalPrice = cartItems.reduce((acc, itm) => {
+    return acc+((itm.price)*itm.qty)
+  },0)
+
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: 7*100,
+    amount: totalPrice.toString()*100,
     currency: "inr"
   })
 

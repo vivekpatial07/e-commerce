@@ -68,7 +68,7 @@ export function* fetchPaymentIntentSaga(data){
 
   const items = data.payload
   try {
-    const response = yield axios.post('/ecomm/order/pay', items)
+    const response = yield axios.post('/ecomm/order/pay', {items})
     yield put(fetchPaymentIntentSuccess(response.data.clientSecret))
     
   } catch (error) {
