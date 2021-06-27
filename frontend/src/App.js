@@ -1,5 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import { loadStripe } from '@stripe/stripe-js'
+import { Elements } from '@stripe/react-stripe-js'
 import Login from './components/Auth/Login/Login';
 import Signup from './components/Auth/Signup/Signup';
 import Home from './components/Home/Home';
@@ -10,12 +12,16 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Profile from './components/Profile/Profile';
 import PaymentPage from './components/PaymentPage/PaymentPage';
 
+
 function App() {
+  
+  const promise = loadStripe('pk_test_51J6amuSAv8vnTMkr3s7Ivv6uFJQVF0qWm20CSX8pin7JkPPPA6W4FDr7sb5lSPiZ9DQSmnhXJPjJjaZwnuvuRSfU00fmZayE9A')
 
   return (
+    <>
     <Router>
+      <Elements stripe={promise}>
       <div className='App'>
-      
         <Switch>
           <Route path='/login' component={Login}/>
           <Route path='/signup' component={Signup}/>
@@ -35,7 +41,9 @@ function App() {
           */}
         </Switch>
       </div>
+      </Elements>
     </Router>
+    </>
   );
 }
 

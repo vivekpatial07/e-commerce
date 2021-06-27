@@ -7,7 +7,11 @@ import {
  } from './authSaga'
 import { getCartItemsSaga } from './cartSaga'
 import { getAllProductsSaga, getSingleProductSaga } from './productSaga'
-import { fetchAddressSaga, setAddressSaga } from '../sagas/checkoutSaga'
+import {
+  fetchAddressSaga,
+  setAddressSaga,
+  fetchPaymentIntentSaga
+} from '../sagas/checkoutSaga'
 
 export default function* watcherSaga() {
   
@@ -26,5 +30,6 @@ export default function* watcherSaga() {
   /*---------------------checkout saga-------------- */
   yield takeLatest(checkoutActions.SET_ADDRESS_INITIATE, setAddressSaga)
   yield takeLatest(checkoutActions.FETCH_ADDRESS_INITIATE, fetchAddressSaga)
+  yield takeLatest(checkoutActions.FETCH_PAYMENT_INTENT_INITIATE, fetchPaymentIntentSaga)
 
 }

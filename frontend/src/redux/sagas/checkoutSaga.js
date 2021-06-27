@@ -1,7 +1,11 @@
 import axios from "axios"
 import { toast } from 'react-toastify'
 import { put } from 'redux-saga/effects'
-import { fetchAddressSuccess, setAddressSuccess } from "../actionCreators/checkoutCreators"
+import {
+  fetchAddressSuccess,
+  setAddressSuccess,
+  fetchPaymentIntentSuccess
+} from "../actionCreators/checkoutCreators"
 
 export function* setAddressSaga(data) {
     const user = JSON.parse(localStorage.getItem('userInfo'))
@@ -13,7 +17,7 @@ export function* setAddressSaga(data) {
             Authorization: `Bearer ${user.token}`
           }
         }
-        const response = yield axios.post('/ecomm/order/addAddress', data.payload, config )
+        const response = yield axios.post('/ecomm/order/addAddress', data.payload, config)
         console.log(response)
         yield put(setAddressSuccess())
         
@@ -58,4 +62,18 @@ export function* fetchAddressSaga() {
       
       
   }    
+}
+
+export function* fetchPaymentIntentSaga(data){
+
+  const items = data.payload
+  try {
+    const response = yield axios.post('/ecomm/order/pay', items)
+    yield put(fetchPaymentIntentSuccess(response.data.clientSecret))
+    
+  } catch (error) {
+    
+  }
+  //  .then(res=>console.log(x=res.data.clientSecret))
+
 }

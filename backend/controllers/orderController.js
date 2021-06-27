@@ -1,5 +1,7 @@
 const Product = require('../models/productModel')
 const Order = require('../models/orderModel') 
+const stripe = require('stripe')('sk_test_51J6amuSAv8vnTMkrCWJscYFSto4VrkoCkogG2LgDcehozkmcTE03u0gfTd10syGZGDViptlxLVMjltqMQoEIipJ700WsPmowwy')
+
 
 const getCartItems = async(req, res) => {
   try {
@@ -55,7 +57,7 @@ const fetchUserProds = async(req, res) => {
 }
 
 const addAddress = async(req, res) => {
-  console.log(req.body)
+
   const order = await Order.findOne({customer_id: req.user._id})
   order.mainAddress = req.body.mainAddress
   order.city = req.body.city
@@ -64,10 +66,11 @@ const addAddress = async(req, res) => {
   order.landmark = req.body.landmark
   // console.log(order)
   order.save()
+  res.json(201)
+
 }
 
 const fetchAddress = async(req, res) => {
-  console.log('running', req.user)
   const address = {}
   const order = await Order.findOne({ customer_id: req.user._id })
   
@@ -83,10 +86,24 @@ const fetchAddress = async(req, res) => {
 
 }
 
+const doPayment = async(req, res) => {
+  // console.log(req.body)
+  const { cartItems } = req.body
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: 7*100,
+    currency: "inr"
+  })
+
+  res.json({
+    clientSecret: paymentIntent.client_secret
+  })
+}
+
 module.exports = {
   getCartItems,
   pushCartItems,
   fetchUserProds,
   addAddress,
-  fetchAddress
+  fetchAddress,
+  doPayment
 }

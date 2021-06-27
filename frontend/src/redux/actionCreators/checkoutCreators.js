@@ -26,3 +26,17 @@ export const fetchAddressSuccess = (data) => {
     payload: data
   }
 }
+
+export const fetchPaymentIntentInitiate = (data) => {
+  return {
+    type: checkoutActions.FETCH_PAYMENT_INTENT_INITIATE,
+    payload: data
+  }
+}
+
+export const fetchPaymentIntentSuccess = (data) => {
+  return {
+    type: checkoutActions.FETCH_PAYMENT_INTENT_SUCCESS,
+    payload: data
+  }
+}

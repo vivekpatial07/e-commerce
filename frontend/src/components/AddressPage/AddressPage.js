@@ -1,16 +1,25 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { setAddressInitiate } from '../../redux/actionCreators/checkoutCreators'
 import { requiredValidate, numericValidate } from '../../utils/validations'
 import './AddressPage.css'
 import { useHistory } from 'react-router-dom'
+import { checkoutData } from '../../redux/selectors/checkoutSelector'
 
 const AddressPage = () => {
   const [address, setAddress] = useState({})
   const [errors, setErrors] = useState({})
   
   const dispatch = useDispatch()
+  const { addressRedirect } = useSelector(checkoutData)
+
   const history = useHistory()
+  
+  useEffect(()=>{
+    if(addressRedirect) {
+      history.push('/ecommerce/placeOrder/pay')
+    }
+  },[])
 
   const changeHandler = (e) => {
     const newAddress = { ...address }
