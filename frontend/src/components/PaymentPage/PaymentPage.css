@@ -7,3 +7,13 @@
   background: white;
   box-sizing: border-box;
 }
+
+.paymentFormWrapper {
+  width: 500px;
+}
+
+.paymentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

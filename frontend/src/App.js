@@ -11,6 +11,7 @@ import AddressPage from './components/AddressPage/AddressPage';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Profile from './components/Profile/Profile';
 import PaymentPage from './components/PaymentPage/PaymentPage';
+import OrderPlaced from './components/OrderPlaced/OrderPlaced';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path='/signup' component={Signup}/>
           <Route path='/ecommerce/product/:category/:id' component={ProductPage}/>
           <Route path='/ecommerce/cart' component={CartPage}/>
+          <ProtectedRoute path='/ecommerce/placeOrder/pay/orderPlaced' component={OrderPlaced}/>
           <ProtectedRoute path='/ecommerce/placeOrder/pay' component={PaymentPage}/>
           <ProtectedRoute path='/ecommerce/placeOrder' component={AddressPage} exact/>
           <Route path='/ecommerce/user/profile' component={Profile}/>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   CardElement,
@@ -9,13 +9,16 @@ import { getCartItemsInitiate } from '../../redux/actionCreators/cartCreators'
 import { fetchAddressInitiate, fetchPaymentIntentInitiate } from '../../redux/actionCreators/checkoutCreators'
 import { allCartData } from '../../redux/selectors/cartSelector'
 import { checkoutData, paymentData } from '../../redux/selectors/checkoutSelector'
-import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 import './PaymentPage.css'
 
 const PaymentPage = () => {
-  const { cartItems } = useSelector(allCartData)
+  const [paymentInt, setPaymentInt] = useState(null) 
   // const { address, addressLoader } = useSelector(checkoutData)
+  const history = useHistory()
   const dispatch = useDispatch()
+  const { cartItems } = useSelector(allCartData)
+
   const { paymentIntentLoader, clientSecretKey, secretKeyFetched } = useSelector(paymentData)
 
   const stripe = useStripe()
@@ -51,15 +54,13 @@ const PaymentPage = () => {
     dispatch(fetchPaymentIntentInitiate(cartItems))
   },[dispatch, cartItems])
 
-// let x
-//   const fetchPayIntent = async() => {
-//     await axios.post('/ecomm/order/pay', {cartItems}).then(res=>console.log(x=res.data.clientSecret))
-//     const payload = await stripe.confirmCardPayment(x, {
-//       payment_method: {
-//         card: elements.getElement(CardElement)
-//       }
-//     })
-  // }
+  useEffect(() => {
+
+    if(paymentInt) {
+      history.push('/ecommerce/placeOrder/pay/orderPlaced')
+    }
+
+  }, [history, paymentInt])
 
   const handleCardChange = (e) => {
     console.log(e)
@@ -67,22 +68,25 @@ const PaymentPage = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault()
+    
     if(secretKeyFetched) {
       const payload = await stripe.confirmCardPayment(clientSecretKey, {
         payment_method: {
           card: elements.getElement(CardElement)
         }
       })
-      console.log(payload)
+      setPaymentInt(payload)
     }
   }
 
   return (
-    <div>
+    <div className='paymentWrapper'>
       <h1>Pyament Page</h1>
       <form onSubmit={handleSubmit}>
-        <CardElement id='card-element' options={cardStyle} onChange={handleCardChange}/>
-        <button> Pay Now </button>
+        <div className='paymentFormWrapper'>
+          <CardElement id='card-element' options={cardStyle} onChange={handleCardChange}/>
+          <button> Pay Now </button>
+        </div>
       </form>
 
     </div>
