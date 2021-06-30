@@ -6,6 +6,8 @@ import Nav from '../NavBar/NavBar'
 import ProductCard from '../ProductCard/ProductCard'
 import { allProductsData } from '../../redux/selectors/productsSelector'
 import './Home.css'
+import Carousel from '../Carousel/Carousel'
+import { SliderData } from '../../Assets/Carousel/CarouselData'
 
 const Home = () => {
   
@@ -30,13 +32,17 @@ const Home = () => {
   return (
     <div>
       <Nav />
-      <h1 className='home-header'>Welcome to ecommerce</h1>
+      {/* <h1 className='home-header'>Welcome to ecommerce</h1> */}
       {productsLoader
         ? (
           <div className='homeLoaderWrapper'><CommonLoader height={70} width={70}/></div>
         ): (
         <>
+          <div style={{margin:'20px'}}>
+            <Carousel slides={SliderData}/>
+          </div>
           <div className='products-wrapper'>
+            <div>Popular Products</div>
             {products}
           </div>
         </>

@@ -7,7 +7,7 @@ import './Login.css'
 import { requiredValidate, emailValid, createPasswordValidate } from '../../../utils/validations'
 
 const Login = (props) => {
-
+  const user = JSON.parse(localStorage.getItem('userInfo'))
   const [data, setData] = useState({})
   const [errors, setErrors] = useState({})
   
@@ -41,9 +41,15 @@ const Login = (props) => {
   useEffect(()=>{
     if(redirect) {
       // props.history.goBack()
+      const condition = user.email.split('@')[1].includes('admin')
+
+      if(condition) {
+        props.history.push('/dashboard')
+        return
+      }
       props.history.push('/ecommerce')
     }
-  },[props.history, redirect])
+  },[props.history, redirect, user])
 
   return (
     <div className="mainWrapper">

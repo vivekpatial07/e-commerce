@@ -3,7 +3,6 @@
   justify-content: center;
   flex-wrap: wrap;
   margin: 0 50px
-  /* margin: 0 50px; use this with when applying media query */
 }
 
 .home-header  {
@@ -11,12 +10,6 @@
   font-weight: 400;
 }
 
-/* @media only screen and (max-width: 700px) {
-  .home-header {
-    width: 60%;
-    margin: auto;
-  }
-} */
 
 .homeLoaderWrapper {
   height: 60vh;

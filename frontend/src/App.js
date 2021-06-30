@@ -12,6 +12,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Profile from './components/Profile/Profile';
 import PaymentPage from './components/PaymentPage/PaymentPage';
 import OrderPlaced from './components/OrderPlaced/OrderPlaced';
+import Admin from './components/Admin/Admin';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <ProtectedRoute path='/ecommerce/placeOrder' component={AddressPage} exact/>
           <Route path='/ecommerce/user/profile' component={Profile}/>
           <Route path='/ecommerce' component={Home} exact/>
+          <Route path='/dashboard' component={Admin} exact/>
 
           <Redirect from="/" to="/ecommerce"/>
           
