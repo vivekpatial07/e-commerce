@@ -8,6 +8,9 @@ import { allProductsData } from '../../redux/selectors/productsSelector'
 import './Home.css'
 import Carousel from '../Carousel/Carousel'
 import { SliderData } from '../../Assets/Carousel/CarouselData'
+import Category from '../Category/Category'
+import ProductSlider from '../ProductSlider/ProductSlider'
+import HomeProd from '../HomeProd/HomeProd'
 
 const Home = () => {
   
@@ -38,13 +41,13 @@ const Home = () => {
           <div className='homeLoaderWrapper'><CommonLoader height={70} width={70}/></div>
         ): (
         <>
-          <div style={{margin:'20px'}}>
+          <div style={{margin:'20px 0'}}>
             <Carousel slides={SliderData}/>
           </div>
-          <div className='products-wrapper'>
-            <div>Popular Products</div>
-            {products}
-          </div>
+          <Category />
+
+          <HomeProd />
+          <ProductSlider />
         </>
         )
       }

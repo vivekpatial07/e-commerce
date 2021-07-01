@@ -1,0 +1,8 @@
+.productSliderContainer {
+  display: flex;
+  overflow-x: scroll;
+  width: 90vw;
+  margin: 20px auto;
+  padding: 10px;
+  background: grey;
+}
