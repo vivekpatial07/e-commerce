@@ -1,6 +1,6 @@
 import { withRouter } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import './NavBar.css'
 
@@ -43,8 +43,8 @@ const NavBar = ({history}) => {
       </div>
       </div>
       <div className='nav-bottom'>
-        <div>
-          <input placeholder='search products'/>
+        <div className='searchBarWrapper'>
+          <input placeholder='search products' className='searchBar'/><span className='searchIcon'><FontAwesomeIcon icon={faSearch} /></span>
         </div>
       </div>
     </div>
