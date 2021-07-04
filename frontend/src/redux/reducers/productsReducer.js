@@ -2,7 +2,9 @@ import { productActions } from '../actionTypes'
 
 const productsState = {
   productsLoader: false,
-  allProducts: []
+  allProducts: [],
+  topProducts: [],
+  topProductsLoader: false
 }
 
 export const productsReducer = (state=productsState, action) => {
@@ -26,7 +28,25 @@ export const productsReducer = (state=productsState, action) => {
         ...state,
         productsLoader: false
       }
+    
+    case productActions.GET_TOP_PRODUCTS_INIT:
+      return {
+        ...state,
+        topProductsLoader: true
+      }
 
+    case productActions.GET_TOP_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        topProductsLoader: false,
+        topProducts: action.payload
+      }
+    case productActions.GET_TOP_PRODUCT_FAILURE:
+      return {
+        ...state,
+        topProductsLoader: false,
+        topProducts: []
+      }
     default:
       return {
       ...state

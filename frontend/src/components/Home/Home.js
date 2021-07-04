@@ -14,29 +14,29 @@ import HomeProd from '../HomeProd/HomeProd'
 
 const Home = () => {
   
-  const dispatch = useDispatch()
-  const { allProducts, productsLoader } = useSelector(allProductsData) 
+  // const dispatch = useDispatch()
+  const { allProducts, topProductsLoader } = useSelector(allProductsData) 
 
-  useEffect(()=>{
-    dispatch(getAllProductsInitiate())
-  },[dispatch])
+  // useEffect(()=>{
+  //   dispatch(getAllProductsInitiate())
+  // },[dispatch])
   
-  const products = allProducts.map(product => {
-    return <ProductCard
-      key={product._id}
-      title={product.title}
-      category={product.category}
-      price={product.price}
-      image={product.image}
-      id={product._id}
-      />
-  })
+  // const products = allProducts.map(product => {
+  //   return <ProductCard
+  //     key={product._id}
+  //     title={product.title}
+  //     category={product.category}
+  //     price={product.price}
+  //     image={product.image}
+  //     id={product._id}
+  //     />
+  // })
 
   return (
     <div>
       <Nav />
       {/* <h1 className='home-header'>Welcome to ecommerce</h1> */}
-      {productsLoader
+      {topProductsLoader
         ? (
           <div className='homeLoaderWrapper'><CommonLoader height={70} width={70}/></div>
         ): (

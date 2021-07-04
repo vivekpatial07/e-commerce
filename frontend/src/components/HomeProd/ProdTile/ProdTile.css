@@ -1,5 +1,33 @@
 .prodTileContainer {
-  border: 1px solid red;
   height: 40vw;
   width: 40vw;
+  box-shadow: 0 0 3px 1px grey;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.prodTileContainer:hover {
+  cursor: pointer;
+}
+
+.prodTileContainer img {
+  height: 40vw;
+  width: 100%;
+  border-radius: 15px;
+
+}
+
+@media(min-width: 700px) {
+  .prodTileContainer , .prodTileContainer img {
+    height: 250px;
+    width: 30vw;
+  }
+}
+
+
+@media (min-width: 1600px) {
+  .prodTileContainer , .prodTileContainer img {
+    height: 450px;
+    width: 35vw;
+  }
 }

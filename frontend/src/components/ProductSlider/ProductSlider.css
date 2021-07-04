@@ -4,5 +4,6 @@
   width: 90vw;
   margin: 20px auto;
   padding: 10px;
-  background: grey;
+  box-shadow: 0 0 5px 0px grey;
+  border-radius: 5px
 }

@@ -21,4 +21,19 @@ const getSingleProduct = async(req, res) => {
   }
 }
 
-module.exports = { getAllProducts, getSingleProduct }
+const getTopProducts = async(req, res) => {
+
+  const products = await Product.find().limit(7)
+  // console.log(products.length)
+  if(products){
+    res.status(201).json(products)
+  } else {
+    throw new Error('No Products in DB')
+  }
+}
+
+module.exports = {
+  getAllProducts,
+  getSingleProduct,
+  getTopProducts
+}

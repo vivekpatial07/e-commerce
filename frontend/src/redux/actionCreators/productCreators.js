@@ -45,3 +45,22 @@ export const clearSingleProduct = () => {
     type: productActions.CLEAR_SINGLE_PRODUCT
   }
 }
+
+export const getTopProductsInit = () => {
+  return {
+    type: productActions.GET_TOP_PRODUCTS_INIT
+  }
+}
+
+export const getTopProductsSuccess = (data) => {
+  return {
+    type: productActions.GET_TOP_PRODUCT_SUCCESS,
+    payload: data
+  }
+}
+
+export const getTopProductsFailure = () => {
+  return {
+    type: productActions.GET_TOP_PRODUCT_FAILURE
+  }
+}

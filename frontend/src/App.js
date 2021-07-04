@@ -13,6 +13,7 @@ import Profile from './components/Profile/Profile';
 import PaymentPage from './components/PaymentPage/PaymentPage';
 import OrderPlaced from './components/OrderPlaced/OrderPlaced';
 import Admin from './components/Admin/Admin';
+import AllProds from './components/AllProds/AllProds';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path='/login' component={Login}/>
           <Route path='/signup' component={Signup}/>
           <Route path='/ecommerce/product/:category/:id' component={ProductPage}/>
+          <Route path='ecommerce/products/:category' component={AllProds}/>
           <Route path='/ecommerce/cart' component={CartPage}/>
           <ProtectedRoute path='/ecommerce/placeOrder/pay/orderPlaced' component={OrderPlaced}/>
           <ProtectedRoute path='/ecommerce/placeOrder/pay' component={PaymentPage}/>
