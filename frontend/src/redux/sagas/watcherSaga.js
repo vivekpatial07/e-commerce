@@ -6,7 +6,7 @@ import {
   logoutSaga
  } from './authSaga'
 import { getCartItemsSaga } from './cartSaga'
-import { getAllProductsSaga, getSingleProductSaga, getTopProdsSaga } from './productSaga'
+import { getAllProductsSaga, getSingleProductSaga, getTopProdsSaga, rateProdSaga } from './productSaga'
 import {
   fetchAddressSaga,
   setAddressSaga,
@@ -25,6 +25,7 @@ export default function* watcherSaga() {
   yield takeLatest(productActions.GET_ALL_PRODUCTS_INITIATE, getAllProductsSaga)
   yield takeLatest(productActions.GET_SINGLE_PRODUCT_INITIATE, getSingleProductSaga)
   yield takeLatest(productActions.GET_TOP_PRODUCTS_INIT, getTopProdsSaga)
+  yield takeLatest(productActions.RATE_PRODUCT_INIT, rateProdSaga)
 
   /*--------------------cart saga--------------------*/ 
   yield takeLatest(cartActions.GET_CART_ITEMS_INITIATE, getCartItemsSaga)

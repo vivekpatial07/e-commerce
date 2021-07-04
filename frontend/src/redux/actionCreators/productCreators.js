@@ -64,3 +64,23 @@ export const getTopProductsFailure = () => {
     type: productActions.GET_TOP_PRODUCT_FAILURE
   }
 }
+
+export const rateProdInit = (data) => {
+  return {
+    type: productActions.RATE_PRODUCT_INIT,
+    payload: data
+  }
+}
+
+export const rateProdSucc = (data) => {
+  return {
+    type: productActions.RATE_PRODUCT_SUCC,
+    paylaod: data
+  }
+}
+
+export const rateProdFail = (data) => {
+  return {
+    type: productActions.RATE_PRODUCT_FAIL
+  }
+}

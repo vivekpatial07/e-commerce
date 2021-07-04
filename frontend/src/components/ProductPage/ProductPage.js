@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import NavBar from '../NavBar/NavBar'
-import { clearSingleProduct, getSingleProductInitiate } from '../../redux/actionCreators/productCreators'
+import { clearSingleProduct, getSingleProductInitiate, rateProdInit } from '../../redux/actionCreators/productCreators'
 import { singleProductData } from '../../redux/selectors/productsSelector'
 import './ProductPage.css'
 import CommonButton from '../BuyButton/CommonButton'
@@ -9,6 +9,8 @@ import CommonLoader from '../CommonLoader/CommonLoader'
 import CartPopup from '../Cart/CartPopup/CartPopup'
 import { toast } from 'react-toastify'
 import { getCartItemsInitiate } from '../../redux/actionCreators/cartCreators'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 const ProductPage = ({history, match: {params: { id, category }}}) => {
 
@@ -80,6 +82,11 @@ const ProductPage = ({history, match: {params: { id, category }}}) => {
     }
   }
 
+  const rateHandler = () => {
+    dispatch(rateProdInit(id))
+    console.log('clicked')
+  }
+
   return (
     <>
     <NavBar />
@@ -114,6 +121,23 @@ const ProductPage = ({history, match: {params: { id, category }}}) => {
         </div>
         </div>
       </div>
+      <div className='ratingWrapper'>
+        <div>
+          <button className='rateBtn' onClick={rateHandler}>Rate</button>
+        </div>
+          Ratings and reviews
+          <div className='ratingBox'>
+            <div>
+              0  <FontAwesomeIcon icon={faStar} style={{color: '#77C9D4'}}/> Average Rating
+            </div>
+          </div>
+          <div>
+            0 ratings and reviews
+          </div>
+          <div>
+            Reviews
+          </div>
+        </div>
       </>
     )
   }

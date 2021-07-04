@@ -67,6 +67,39 @@
   position: absolute;
 }
 
+.rateBtn {
+  border: none;
+  color: #ffffff;
+  height: 35px;
+  width: 150px;
+  background-color: #77C9D4;
+  border-radius: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (min-width: 500px) {
   .productPageImage > img {

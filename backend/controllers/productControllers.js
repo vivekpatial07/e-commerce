@@ -32,8 +32,17 @@ const getTopProducts = async(req, res) => {
   }
 }
 
+const rateProduct = async(req, res) => {
+  const id = req.body.id
+  
+  const product = await Product.findById(id)
+  console.log(product)
+
+}
+
 module.exports = {
   getAllProducts,
   getSingleProduct,
-  getTopProducts
+  getTopProducts,
+  rateProduct
 }

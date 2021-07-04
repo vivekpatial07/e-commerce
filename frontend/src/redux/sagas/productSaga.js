@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { put } from 'redux-saga/effects'
-import { getAllProductsSuccess, getSingleProductSuccess, getTopProductsSuccess } from '../actionCreators/productCreators'
+import { getAllProductsSuccess, getSingleProductSuccess, getTopProductsSuccess, rateProdSucc } from '../actionCreators/productCreators'
 
 export function* getAllProductsSaga(data) {
   const response = yield axios.get('/ecomm/products/')
@@ -29,7 +29,19 @@ export function* getTopProdsSaga() {
     yield put(getTopProductsSuccess(response.data))
   
   } catch (error) {
-    
+   console.log(error)
   }
 
+}
+
+export function* rateProdSaga(data) {
+  const id = data.payload
+  console.log('runin', id)
+
+  try {
+    const response = yield axios.post(`/ecomm/products/rateProd`, {id})
+    yield put(rateProdSucc('tobedone'))
+  } catch (error) {
+    console.log(error)
+  }
 }
