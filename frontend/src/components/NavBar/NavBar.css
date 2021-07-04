@@ -65,14 +65,12 @@
 
 .searchBar:focus {
   box-shadow: 0 0 3px 0;
-
 }
 
 .searchBarWrapper {
   position: relative;
   width: 70vw;
   margin: 0 auto;
-
 }
 
 .searchBar::placeholder {

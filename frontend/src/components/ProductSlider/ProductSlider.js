@@ -19,7 +19,9 @@ const ProductSlider = () => {
   const products = topProducts.map(prod => (
     <ProductSliderCard
       image={prod.image}
-      title={prod.title}  
+      title={prod.title}
+      id={prod._id}
+      category={prod.category}
     />
   ))
 
