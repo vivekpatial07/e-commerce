@@ -65,10 +65,11 @@ export const getTopProductsFailure = () => {
   }
 }
 
-export const rateProdInit = (data) => {
+export const rateProdInit = (id, rateData) => {
   return {
     type: productActions.RATE_PRODUCT_INIT,
-    payload: data
+    id,
+    rateData
   }
 }
 

@@ -11,15 +11,28 @@ import { toast } from 'react-toastify'
 import { getCartItemsInitiate } from '../../redux/actionCreators/cartCreators'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { faStar as unStar } from '@fortawesome/free-regular-svg-icons'
+import { startSession } from 'mongoose'
+
+const initialRating = {
+  star: null,
+  review: null
+}
 
 const ProductPage = ({history, match: {params: { id, category }}}) => {
 
   const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+  const [starOne, toggleStarOne] = useState(false)
+  const [starTwo, toggleStarTwo] = useState(false)
+  const [starThree, toggleStarThree]  = useState(false)
+  const [starFour, toggleStarFour]=  useState(false)
+  const [starFive, toggleStarFive]  = useState(false)
 
   const [showCart, setShowCart] = useState(false) 
+  // const [rateData, setRateData] = useState(initialRating)
   const dispatch = useDispatch()
   const { product, singleProductLoader } = useSelector(singleProductData)
-  
+
   useEffect(() => {
     dispatch(getSingleProductInitiate(id))
     return () => {
@@ -82,8 +95,13 @@ const ProductPage = ({history, match: {params: { id, category }}}) => {
     }
   }
 
-  const rateHandler = () => {
-    dispatch(rateProdInit(id))
+  const rateHandler = async(stars) => {
+    const rateData = {
+      stars: stars,
+    }
+    console.log(rateData)
+
+    await dispatch(rateProdInit(id, rateData))
     console.log('clicked')
   }
 
@@ -117,27 +135,102 @@ const ProductPage = ({history, match: {params: { id, category }}}) => {
           <div className='productPageBtnWrapper'>
             <CommonButton btnClass='card-add-to-cart' onClick={addtoCartHandler}>Add To Cart</CommonButton>
             <CommonButton btnClass='card-buy-now' onClick={buyProduct}>Buy Now</CommonButton>
+          </div> 
+          <div className='star'>
+            {!userInfo ? (
+            <div>
+              <FontAwesomeIcon
+                onClick={() => rateHandler('1')}
+                onMouseOut={() => {
+                  toggleStarOne(false)
+                  toggleStarTwo(false)
+                  toggleStarThree(false)
+                  toggleStarFour(false)
+                  toggleStarFive(false)
+                }}
+                onMouseOver={() => toggleStarOne(true)}
+                icon={starOne?faStar:unStar}
+              />
+              <FontAwesomeIcon
+                onClick={() => rateHandler('2')}
+                onMouseOut={() => {
+                  toggleStarOne(false)
+                  toggleStarTwo(false)
+                  toggleStarThree(false)
+                  toggleStarFour(false)
+                  toggleStarFive(false)
+                }}
+                onMouseOver={() => {
+                  toggleStarOne(true)
+                  toggleStarTwo(true)
+                }}
+                icon={starTwo?faStar:unStar}
+              />
+              <FontAwesomeIcon 
+                onClick={() => rateHandler('3')}
+                onMouseOut={() => {
+                  toggleStarOne(false)
+                  toggleStarTwo(false)
+                  toggleStarThree(false)
+                  toggleStarFour(false)
+                  toggleStarFive(false)
+                }}
+                onMouseOver={() => {
+                  toggleStarThree(true)
+                  toggleStarOne(true)
+                  toggleStarTwo(true)
+                }}
+                icon={starThree?faStar:unStar}/>
+              <FontAwesomeIcon
+                onClick={() => rateHandler('4')}
+                onMouseOut={() => {
+                  toggleStarOne(false)
+                  toggleStarTwo(false)
+                  toggleStarThree(false)
+                  toggleStarFour(false)
+                  toggleStarFive(false)
+                }} 
+                onMouseOver={() => {
+                  toggleStarFour(true)
+                  toggleStarOne(true)
+                  toggleStarTwo(true)
+                  toggleStarThree(true)
+                }}
+                icon={starFour?faStar:unStar}/>
+              <FontAwesomeIcon 
+                onClick={() => rateHandler('5')}
+                onMouseOut={() => {
+                  toggleStarOne(false)
+                  toggleStarTwo(false)
+                  toggleStarThree(false)
+                  toggleStarFour(false)
+                  toggleStarFive(false)
+                }} 
+                onMouseOver={() => {
+                  toggleStarFive(true)
+                  toggleStarOne(true)
+                  toggleStarTwo(true)
+                  toggleStarThree(true)
+                  toggleStarFour(true)
+                
+                }}
+                icon={starFive?faStar:unStar}/>
+            </div>
+            ) : (
+              <div>
+                {/* <FontAwesomeIcon icon={unStar}/>
+                <FontAwesomeIcon icon={unStar}/>
+                <FontAwesomeIcon icon={unStar}/>
+                <FontAwesomeIcon icon={unStar}/>
+                <FontAwesomeIcon icon={unStar}/> */}
+              
+              </div>
+            )
+            }
           </div>
         </div>
         </div>
       </div>
-      <div className='ratingWrapper'>
-        <div>
-          <button className='rateBtn' onClick={rateHandler}>Rate</button>
-        </div>
-          Ratings and reviews
-          <div className='ratingBox'>
-            <div>
-              0  <FontAwesomeIcon icon={faStar} style={{color: '#77C9D4'}}/> Average Rating
-            </div>
-          </div>
-          <div>
-            0 ratings and reviews
-          </div>
-          <div>
-            Reviews
-          </div>
-        </div>
       </>
     )
   }

@@ -35,11 +35,15 @@ export function* getTopProdsSaga() {
 }
 
 export function* rateProdSaga(data) {
-  const id = data.payload
-  console.log('runin', id)
+  const ratingData = {
+    id: data.id,
+    stars: data.rateData.stars,
+    review: data.rateData.review
+  }
+  console.log('runin', ratingData)
 
   try {
-    const response = yield axios.post(`/ecomm/products/rateProd`, {id})
+    // const response = yield axios.post(`/ecomm/products/rateProd`, {id})
     yield put(rateProdSucc('tobedone'))
   } catch (error) {
     console.log(error)

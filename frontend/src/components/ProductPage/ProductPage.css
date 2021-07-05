@@ -64,7 +64,7 @@
   background: rgba(0, 0, 0, 0.2);
   height: 93vh;
   width: 100vw;
-  position: absolute;
+  /* position: absolute; */
 }
 
 .rateBtn {
@@ -77,9 +77,16 @@
 }
 
 
-
-
-
+.star {
+  display: flex;
+  color: #77C9D4;
+  margin: 10px 0;
+  justify-content: center;
+}
+.star svg {
+  font-size: 30px;
+  cursor: pointer;
+}
 
 
 
