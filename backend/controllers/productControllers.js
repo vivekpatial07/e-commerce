@@ -1,4 +1,5 @@
 const Product = require('../models/productModel')
+const User = require('../models/userModel')
 
 const getAllProducts = async(req, res) => {
   const products = await Product.find()
@@ -24,7 +25,6 @@ const getSingleProduct = async(req, res) => {
 const getTopProducts = async(req, res) => {
 
   const products = await Product.find().limit(7)
-  // console.log(products.length)
   if(products){
     res.status(201).json(products)
   } else {
@@ -33,16 +33,47 @@ const getTopProducts = async(req, res) => {
 }
 
 const rateProduct = async(req, res) => {
-  const id = req.body.id
+  const id = req.body.ratingData.userId
+  const rating = {
+    productId: req.body.ratingData.id,
+    stars: req.body.ratingData.stars
+  }
   
-  const product = await Product.findById(id)
-  console.log(product)
+  try {
+    const user = await User.findById(id)
+    const idx = user.ratings.findIndex(prod => prod.productId === rating.productId)
+    if(idx !== -1) {
+      user.ratings.filter(itm => {
+        if(itm.productId === rating.productId) {
+          itm.stars = rating.stars
+        }
+      })
+
+    } else{
+      user.ratings.push(rating)
+    }
+    await user.save()
+    res.status(201).json(user)
+
+  } catch (error) {
+    console.log(error, 'error')
+  }
+}
+
+const checkRated = async(req, res) => {
+  const user = await User.findById(req.body.data.userId)
+  const ratings = user.ratings
+  const rated = ratings.findIndex(prod => prod.productId === req.body.data.prodId)
+  console.log(rated)
+  res.status(201).send({rated: rated})
 
 }
+
 
 module.exports = {
   getAllProducts,
   getSingleProduct,
   getTopProducts,
-  rateProduct
+  rateProduct,
+  checkRated
 }

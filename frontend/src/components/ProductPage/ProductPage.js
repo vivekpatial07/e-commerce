@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import NavBar from '../NavBar/NavBar'
-import { clearSingleProduct, getSingleProductInitiate, rateProdInit } from '../../redux/actionCreators/productCreators'
-import { singleProductData } from '../../redux/selectors/productsSelector'
+import { checkRatedProdInit, clearSingleProduct, getSingleProductInitiate, rateProdInit } from '../../redux/actionCreators/productCreators'
+import { allProductsData, singleProductData } from '../../redux/selectors/productsSelector'
 import './ProductPage.css'
 import CommonButton from '../BuyButton/CommonButton'
 import CommonLoader from '../CommonLoader/CommonLoader'
@@ -12,7 +12,6 @@ import { getCartItemsInitiate } from '../../redux/actionCreators/cartCreators'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faStar as unStar } from '@fortawesome/free-regular-svg-icons'
-import { startSession } from 'mongoose'
 
 const initialRating = {
   star: null,
@@ -32,6 +31,16 @@ const ProductPage = ({history, match: {params: { id, category }}}) => {
   // const [rateData, setRateData] = useState(initialRating)
   const dispatch = useDispatch()
   const { product, singleProductLoader } = useSelector(singleProductData)
+  const { checkProdLoader, productRated } = useSelector(allProductsData)
+
+  //check if rated
+  useEffect(() => {
+    dispatch(checkRatedProdInit({
+      prodId: id,
+      userId: userInfo._id
+    }))
+  }, [])
+
 
   useEffect(() => {
     dispatch(getSingleProductInitiate(id))
@@ -53,12 +62,10 @@ const ProductPage = ({history, match: {params: { id, category }}}) => {
       } else {
         cartItems[itmIndex].qty+=1 
       }
-      console.log(cartItems)
       localStorage.setItem('cartInfo', JSON.stringify(cartItems))
     } else {
       const cartItems = []
       cartItems.push({product_id:id, qty:1})
-      console.log(cartItems)
     
     
       localStorage.setItem('cartInfo', JSON.stringify(cartItems))
@@ -96,13 +103,28 @@ const ProductPage = ({history, match: {params: { id, category }}}) => {
   }
 
   const rateHandler = async(stars) => {
+    if(!userInfo){
+      toast.warning('You need to log in first', {
+        position:'top-center',
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      })
+      return history.push('/login')
+    }
     const rateData = {
       stars: stars,
+      userId: userInfo._id
     }
-    console.log(rateData)
 
     await dispatch(rateProdInit(id, rateData))
-    console.log('clicked')
+   //not waiting for previous dispatch
+    // await dispatch(checkRatedProdInit({
+    //   prodId: id,
+    //   userId: userInfo._id
+    // }))
   }
 
   return (
@@ -137,7 +159,11 @@ const ProductPage = ({history, match: {params: { id, category }}}) => {
             <CommonButton btnClass='card-buy-now' onClick={buyProduct}>Buy Now</CommonButton>
           </div> 
           <div className='star'>
-            {!userInfo ? (
+            {/* {!userInfo ? ( */}
+            {
+              productRated
+                ? <div>already rated</div>
+                :(
             <div>
               <FontAwesomeIcon
                 onClick={() => rateHandler('1')}
@@ -216,17 +242,8 @@ const ProductPage = ({history, match: {params: { id, category }}}) => {
                 }}
                 icon={starFive?faStar:unStar}/>
             </div>
-            ) : (
-              <div>
-                {/* <FontAwesomeIcon icon={unStar}/>
-                <FontAwesomeIcon icon={unStar}/>
-                <FontAwesomeIcon icon={unStar}/>
-                <FontAwesomeIcon icon={unStar}/>
-                <FontAwesomeIcon icon={unStar}/> */}
-              
-              </div>
             )
-            }
+          }
           </div>
         </div>
         </div>

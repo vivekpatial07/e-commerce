@@ -74,6 +74,7 @@ export const rateProdInit = (id, rateData) => {
 }
 
 export const rateProdSucc = (data) => {
+  console.log(data)
   return {
     type: productActions.RATE_PRODUCT_SUCC,
     paylaod: data
@@ -83,5 +84,19 @@ export const rateProdSucc = (data) => {
 export const rateProdFail = (data) => {
   return {
     type: productActions.RATE_PRODUCT_FAIL
+  }
+}
+
+export const checkRatedProdInit = (data) => {
+  return {
+    type: productActions.CHECK_RATED_PRODUCTS_INIT,
+    payload: data
+  }
+}
+
+export const checkRatedProdSucc = (data) => {
+  return {
+    type: productActions.CHECK_RATED_PRODUCTS_SUCC,
+    payload: data
   }
 }

@@ -1,28 +1,5 @@
 const mongoose = require('mongoose')
 
-const ratingSchema = mongoose.Schema({
-  raterId: {
-    type: String,
-    ref: 'User',
-    required: true
-  },
-  stars: {
-    type: Number,
-    required: true
-  }
-})
-
-const reviewSchema = mongoose.Schema({
-  reviewerId: {
-    type: String,
-    ref: 'User',
-    required: true
-  },
-  review: {
-    type: String,
-    required: true
-  }
-})
 
 const productSchema = mongoose.Schema({
   
@@ -60,8 +37,6 @@ const productSchema = mongoose.Schema({
     required: true,
     default: 0
   },
-  ratings: [ratingSchema],
-  reviews: [reviewSchema]
 })
 
 const Product = mongoose.model('Product', productSchema)

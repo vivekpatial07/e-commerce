@@ -4,12 +4,14 @@ const {
   getAllProducts,
   getSingleProduct,
   getTopProducts,
-  rateProduct
+  rateProduct,
+  checkRated
 } = require('../controllers/productControllers')
 
 router.get('/', getAllProducts)
 router.get('/single-product/:id', getSingleProduct)
 router.get('/top-products', getTopProducts)
 router.post('/rateProd', rateProduct)
+router.post('/checkRated/:id', checkRated)
 
 module.exports = router

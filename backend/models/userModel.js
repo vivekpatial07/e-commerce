@@ -1,6 +1,31 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 
+const ratingSchema = mongoose.Schema({
+  productId: {
+    type: String,
+    ref: 'User',
+    required: true
+  },
+  stars: {
+    type: Number,
+    required: true
+  }
+})
+
+
+const reviewSchema = mongoose.Schema({
+  reviewerId: {
+    type: String,
+    ref: 'User',
+    required: true
+  },
+  review: {
+    type: String,
+    required: true
+  }
+})
+
 const userSchema = mongoose.Schema(
   {
     username: {
@@ -26,6 +51,8 @@ const userSchema = mongoose.Schema(
       required: true,
       default: false
     },
+    ratings:[ratingSchema],
+    reviews: [reviewSchema]
   },
   {
     timestamps: true

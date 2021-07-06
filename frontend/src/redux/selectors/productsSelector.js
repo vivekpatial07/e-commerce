@@ -7,13 +7,18 @@ export const allProductsData = createSelector(
       allProducts,
       productsLoader,
       topProducts,
-      topProductsLoader
+      topProductsLoader,
+      productRated,
+      checkProdLoader,
+
     } = prodState
     return {
       allProducts,
       productsLoader,
       topProducts,
-      topProductsLoader
+      topProductsLoader,
+      productRated,
+      checkProdLoader,
     }
   }
 )

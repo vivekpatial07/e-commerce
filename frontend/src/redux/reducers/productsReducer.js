@@ -4,7 +4,10 @@ const productsState = {
   productsLoader: false,
   allProducts: [],
   topProducts: [],
-  topProductsLoader: false
+  topProductsLoader: false,
+  productRated: false,
+  checkProdLoader: false,
+
 }
 
 export const productsReducer = (state=productsState, action) => {
@@ -47,6 +50,24 @@ export const productsReducer = (state=productsState, action) => {
         topProductsLoader: false,
         topProducts: []
       }
+    case productActions.RATE_PRODUCT_SUCC:
+      return {
+        ...state,
+      }
+    case productActions.CHECK_RATED_PRODUCTS_INIT:
+      return {
+        ...state,
+        productRated: false,
+        checkProdLoader: true
+      }
+
+    case productActions.CHECK_RATED_PRODUCTS_SUCC:
+      return {
+        ...state,
+        productRated: action.payload,
+        checkProdLoader: false
+      }
+
     default:
       return {
       ...state
