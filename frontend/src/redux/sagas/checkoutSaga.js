@@ -4,7 +4,8 @@ import { put } from 'redux-saga/effects'
 import {
   fetchAddressSuccess,
   setAddressSuccess,
-  fetchPaymentIntentSuccess
+  fetchPaymentIntentSuccess,
+  checkAddressSucc
 } from "../actionCreators/checkoutCreators"
 
 export function* setAddressSaga(data) {
@@ -76,4 +77,22 @@ export function* fetchPaymentIntentSaga(data){
   }
   //  .then(res=>console.log(x=res.data.clientSecret))
 
+}
+
+export function* checkAddressSaga(data) {
+  const userId = data.payload
+  try {
+    const response = yield axios.post('/ecomm/order/checkAddress', {userId})
+    console.log(response)
+    if(response.data.address === false){
+      yield put(checkAddressSucc(false))
+      console.log('1')
+    } else {
+      yield put(checkAddressSucc(response.data[response.data.length - 1]))
+      console.log('2')
+
+    }
+  } catch (error) {
+    
+  }
 }

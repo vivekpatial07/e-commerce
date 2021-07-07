@@ -23,11 +23,22 @@ const orderSchema = mongoose.Schema({
     required: true
   },
   products: [productsInCart],
-  mainAddress: {type: String},
-  landmark: {type: String},
-  city: {type: String},
-  state: {type: String},
-  pincode: {type: String}
+  address: {
+    mainAddress: {type: String},
+    landmark: {type: String},
+    city: {type: String},
+    state: {type: String},
+    pincode: {type: String},
+    addressId: {
+      type: String,
+      ref: 'User',
+    },
+    paid: {
+      type: Boolean,
+      default: false
+    }
+  },
+  
 
 })
 

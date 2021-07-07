@@ -40,3 +40,19 @@ export const fetchPaymentIntentSuccess = (data) => {
     payload: data
   }
 }
+
+export const checkAddressInit = (data) => {
+  return {
+    type: checkoutActions.CHECK_ADDRESS_INIT,
+    payload: data
+  }
+}
+
+export const checkAddressSucc = (data) => {
+  console.log(data)
+
+  return  {
+    type: checkoutActions.CHECK_ADDRESS_SUCC,
+    payload: data
+  }
+}

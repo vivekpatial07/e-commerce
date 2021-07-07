@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { put } from 'redux-saga/effects'
-import { checkRatedProdSucc, getAllProductsSuccess, getSingleProductSuccess, getTopProductsSuccess, rateProdSucc } from '../actionCreators/productCreators'
+import { checkRatedProdInit, checkRatedProdSucc, getAllProductsSuccess, getSingleProductSuccess, getTopProductsSuccess, rateProdSucc } from '../actionCreators/productCreators'
 import { toast } from 'react-toastify'
 
 export function* getAllProductsSaga(data) {
@@ -45,6 +45,7 @@ export function* rateProdSaga(data) {
   console.log('runin', ratingData)
 
   try {
+    
     const response = yield axios.post(`/ecomm/products/rateProd`, {ratingData})
     // console.log(response,'sdkfl')
     yield put(rateProdSucc(response.data.ratings))
@@ -56,13 +57,23 @@ export function* rateProdSaga(data) {
       pauseOnHover: true,
       draggable: true,
     })
+
+    yield put(checkRatedProdInit({
+      prodId: ratingData.id,
+      userId: ratingData.userId
+    }))
+
   } catch (error) {
     console.log('eror')
     console.log(error)
   }
 }
 
-
+ //not waiting for previous dispatch
+    // await dispatch(checkRatedProdInit({
+    //   prodId: id,
+    //   userId: userInfo._id
+    // }))
 export function* checkRatedProdSaga (data) {
   const prodId = data.payload.prodId
   try {

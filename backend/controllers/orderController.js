@@ -1,5 +1,6 @@
 const Product = require('../models/productModel')
 const Order = require('../models/orderModel') 
+const User = require('../models/userModel')
 const stripe = require('stripe')('sk_test_51J6amuSAv8vnTMkrCWJscYFSto4VrkoCkogG2LgDcehozkmcTE03u0gfTd10syGZGDViptlxLVMjltqMQoEIipJ700WsPmowwy')
 
 
@@ -58,14 +59,24 @@ const fetchUserProds = async(req, res) => {
 
 const addAddress = async(req, res) => {
 
+  const address = {}
+
   const order = await Order.findOne({customer_id: req.user._id})
-  order.mainAddress = req.body.mainAddress
-  order.city = req.body.city
-  order.state = req.body.state
-  order.pincode = req.body.pincode
-  order.landmark = req.body.landmark
-  // console.log(order)
-  order.save()
+  const user = await User.findById(req.user._id)
+
+  
+  address.mainAddress = req.body.mainAddress
+  address.city = req.body.city
+  address.state = req.body.state
+  address.pincode = req.body.pincode
+  address.landmark = req.body.landmark
+  address.addressId = req.user._id.toString()
+
+  user.address.push(address)
+  order.address = address
+
+  await order.save()
+  await user.save()
   res.json(201)
 
 }
@@ -104,11 +115,23 @@ const doPayment = async(req, res) => {
   })
 }
 
+const checkAddress = async(req, res) => {
+  const id = req.body.userId
+  const user = await User.findById(id)
+  console.log(user.address)
+  if(user.address.length > 0) {
+    res.status(201).json(user.address)
+  } else {
+    res.status(201).send({address: false})
+  }
+}
+
 module.exports = {
   getCartItems,
   pushCartItems,
   fetchUserProds,
   addAddress,
   fetchAddress,
-  doPayment
+  doPayment,
+  checkAddress
 }

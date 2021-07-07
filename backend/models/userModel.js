@@ -13,6 +13,18 @@ const ratingSchema = mongoose.Schema({
   }
 })
 
+const addressSchema = mongoose.Schema({
+  mainAddress: {type: String},
+  landmark: {type: String},
+  city: {type: String},
+  state: {type: String},
+  pincode: {type: String},
+  addressId: {
+    type: String,
+    ref: 'User',
+    required: true
+  }
+})
 
 const reviewSchema = mongoose.Schema({
   reviewerId: {
@@ -52,7 +64,8 @@ const userSchema = mongoose.Schema(
       default: false
     },
     ratings:[ratingSchema],
-    reviews: [reviewSchema]
+    reviews: [reviewSchema],
+    address:[addressSchema]
   },
   {
     timestamps: true

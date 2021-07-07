@@ -43,3 +43,25 @@
   color:  rgb(192, 44, 44) !important;
   padding: 10px;
 }
+
+.currentAddress {
+  border: 1px solid lightgrey;
+  height: 200px;
+  width: 200px;
+  padding: 30px;
+  margin: auto;
+}
+
+.proceedBtn {
+  height: 30px;
+  background: #77C9D4;
+  border: none;
+  border-radius: 10px;
+  color: black;
+  margin: 10px;
+  padding: 20px 20px 30px 20px;
+}
+
+.proceedBtn:hover {
+  cursor: pointer;
+}

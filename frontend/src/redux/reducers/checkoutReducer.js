@@ -7,7 +7,9 @@ const checkoutState = {
   addressRedirect: false,
   paymentIntentLoader: false,
   clientSecretKey: null,
-  secretKeyFetched: false
+  secretKeyFetched: false,
+  currentAddress:{},
+  checkAddressLoader: false
 }
 
 export const checkoutReducer = (state=checkoutState, action) => {
@@ -53,6 +55,20 @@ export const checkoutReducer = (state=checkoutState, action) => {
           paymentIntentLoader: false,
           clientSecretKey: action.payload,
           secretKeyFetched: true
+      }
+
+    case checkoutActions.CHECK_ADDRESS_INIT:
+      return {
+        ...state,
+        checkAddressLoader: true,
+        currentAddress: {}
+      }
+
+    case checkoutActions.CHECK_ADDRESS_SUCC:
+      return {
+        ...state,
+        checkAddressLoader: false,
+        currentAddress: action.payload
       }
 
     default:

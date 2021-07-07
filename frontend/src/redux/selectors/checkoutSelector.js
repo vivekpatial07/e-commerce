@@ -6,13 +6,16 @@ export const checkoutData = createSelector(
     const {
       address,
       addressLoader,
-      addressRedirect
+      addressRedirect,
+      currentAddress,
+      checkAddressLoader
     } = checkoutState
     return {
       address,
       addressLoader,
       addressRedirect,
-
+      currentAddress,
+      checkAddressLoader
     }
   }
 )

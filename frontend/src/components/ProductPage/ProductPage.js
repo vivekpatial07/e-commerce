@@ -100,6 +100,8 @@ const ProductPage = ({history, match: {params: { id, category }}}) => {
       })
       history.push('/login')
     }
+    history.push('/ecommerce/placeOrder')
+
   }
 
   const rateHandler = async(stars) => {
@@ -120,11 +122,6 @@ const ProductPage = ({history, match: {params: { id, category }}}) => {
     }
 
     await dispatch(rateProdInit(id, rateData))
-   //not waiting for previous dispatch
-    // await dispatch(checkRatedProdInit({
-    //   prodId: id,
-    //   userId: userInfo._id
-    // }))
   }
 
   return (
