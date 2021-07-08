@@ -4,10 +4,74 @@
   box-shadow: 0px 2px 5px 0px grey;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   z-index: 500;
 }
 
+.functionPanel {
+  background: #f6f6f6;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.functionPanel svg {
+  margin: 0 10px;
+  color: #77C9D4;
+}
+
+.logoPanel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #77C9D4;
+}
+
+.logoPanel > div {
+  margin: 10px 20px;
+}
+
+.logoPanel div:nth-child(1){
+  font-size: 30px;
+}
+
+.logoPanel div:nth-child(2){
+  font-size: 20px;
+}
+
+.menuPanel {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #77C9D4;
+
+}
+
+.menuPanel > div {
+  margin: 10px 20px;
+  /* colo */
+}
+
+.ham-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.ham {
+  height: 5px;
+  margin: 2px;
+  width: 30px;
+  background: #f6f6f6;
+}
+
+.ham-container:hover {
+  cursor: pointer;
+}
+
+
+
+/* 
 .nav-top {
   display: flex;
   align-items: center;
@@ -17,19 +81,6 @@
 .nav-top-left {
   display: flex;
   align-items: center;
-}
-
-.ham-container {
-  display: flex;
-  flex-direction: column;
-  margin-left: 10px;
-}
-
-.ham {
-  height: 5px;
-  margin: 2px;
-  width: 30px;
-  background: #77C9D4;
 }
 
 .logo {
@@ -82,8 +133,4 @@
   position: absolute;
   right: -14px;
   top: 7px;
-}
-
-/* 
-  make nested enhanced reducer
-*/
+} */
