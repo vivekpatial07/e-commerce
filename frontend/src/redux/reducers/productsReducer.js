@@ -7,7 +7,7 @@ const productsState = {
   topProductsLoader: false,
   productRated: false,
   checkProdLoader: false,
-
+  totalRatings: 0
 }
 
 export const productsReducer = (state=productsState, action) => {
@@ -64,8 +64,9 @@ export const productsReducer = (state=productsState, action) => {
     case productActions.CHECK_RATED_PRODUCTS_SUCC:
       return {
         ...state,
-        productRated: action.payload,
-        checkProdLoader: false
+        productRated: action.payload.rated,
+        checkProdLoader: false,
+        totalRatings: action.payload.totalRatings
       }
 
     default:

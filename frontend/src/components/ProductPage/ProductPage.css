@@ -79,7 +79,6 @@
 
 .star {
   display: flex;
-  color: #77C9D4;
   margin: 10px 0;
   justify-content: center;
 }
@@ -88,7 +87,9 @@
   cursor: pointer;
 }
 
-
+.starsRated {
+  color: #77C9D4
+}
 
 
 

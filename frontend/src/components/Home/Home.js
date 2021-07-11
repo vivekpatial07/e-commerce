@@ -47,7 +47,12 @@ const Home = () => {
           <Category />
 
           <HomeProd />
-          <ProductSlider />
+          <div>
+            <p style={{fontSize:'30px', fontWeight: '200', color: 'grey'}}>Featured Products</p>
+            <hr style={{width: '30vw'}}/>
+            <ProductSlider />
+            <hr />
+          </div>
         </>
         )
       }

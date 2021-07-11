@@ -79,12 +79,7 @@ export function* checkRatedProdSaga (data) {
   try {
     const response = yield axios.post(`/ecomm/products/checkRated/${prodId}`, {data:data.payload})
     console.log(response)
-    if(response.data.rated === -1){
-      yield put(checkRatedProdSucc(false))
-    } else {
-      yield put(checkRatedProdSucc(true))
-    }
-
+    yield put(checkRatedProdSucc(response.data))
   } catch (error) {
     console.log(error,'asfsfjlsjfsad;lfl')
   }

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 import './index.css';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './redux/store'

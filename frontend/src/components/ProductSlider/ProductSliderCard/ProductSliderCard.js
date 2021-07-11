@@ -15,11 +15,9 @@ const ProductSliderCard = ({ image, title, category, id, }) => {
   }
 
   return (
-    <div className='cardContainer' onClick={goToProduct}>
-      <div className='prodImgWrapper'>
+    <div className='prodsliderWrapper' onClick={goToProduct}>
         <img src={image} alt='slider-img'/>
         <div style={{wordBreak: 'break-all', color: 'grey'}}>{trimmedTitle}</div>
-      </div>
     </div>
   )
 }

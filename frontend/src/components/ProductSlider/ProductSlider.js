@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import  { Carousel } from 'react-responsive-carousel'
 import ProductSliderCard from './ProductSliderCard/ProductSliderCard'
 import './ProductSlider.css'
 import { getTopProductsInit } from '../../redux/actionCreators/productCreators'
@@ -27,7 +28,12 @@ const ProductSlider = () => {
 
   return (
     <div className='productSliderContainer'>
-      {products}
+      <Carousel
+        showIndicators={false}
+        useKeyboardArrows={true}
+      >
+        {products}
+      </Carousel>
     </div>
   )
 }

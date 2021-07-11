@@ -10,7 +10,7 @@ import CartPopup from '../Cart/CartPopup/CartPopup'
 import { toast } from 'react-toastify'
 import { getCartItemsInitiate } from '../../redux/actionCreators/cartCreators'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons'
 import { faStar as unStar } from '@fortawesome/free-regular-svg-icons'
 
 const initialRating = {
@@ -31,13 +31,13 @@ const ProductPage = ({history, match: {params: { id, category }}}) => {
   // const [rateData, setRateData] = useState(initialRating)
   const dispatch = useDispatch()
   const { product, singleProductLoader } = useSelector(singleProductData)
-  const { checkProdLoader, productRated } = useSelector(allProductsData)
-
+  const { checkProdLoader, productRated, totalRatings } = useSelector(allProductsData)
+  const [ratingAverage, setRatingAverage] = useState(0)
   //check if rated
   useEffect(() => {
     dispatch(checkRatedProdInit({
       prodId: id,
-      userId: userInfo._id
+      userId: userInfo && userInfo._id
     }))
   }, [])
 
@@ -124,6 +124,52 @@ const ProductPage = ({history, match: {params: { id, category }}}) => {
     await dispatch(rateProdInit(id, rateData))
   }
 
+
+  // console.log(ratingAvg)
+  useEffect(() => { 
+    const ratingAvg = (totalRatings) && (totalRatings.reduce((acc, curr) => {
+      return acc + curr.stars
+    },0))/totalRatings.length
+    console.log(ratingAvg)
+    setRatingAverage(ratingAvg)
+  }, [totalRatings, ratingAverage])
+
+
+  const [starsToBeRendered, setStarsToBeRendered] = useState([])
+  
+  useEffect(() => {
+    if(ratingAverage) {
+      let i = 0
+      if(ratingAverage % 1 === 0){
+          console.log(1 )
+        //   while(i < Math.trunc(ratingAverage)){
+      //     const star = <FontAwesomeIcon icon={faStar} />
+      //     setStarsToBeRendered([...starsToBeRendered,star])
+        } else {
+          let i = 0
+          const arr = []
+          while(i < Math.trunc(ratingAverage)){
+            const star = <FontAwesomeIcon icon={faStar} />
+            arr.push(star)
+            // setStarsToBeRendered([...starsToBeRendered,star])
+            console.log(i)
+            i++
+          }
+          const halfStar = <FontAwesomeIcon icon={faStarHalf} />
+          arr.push(halfStar)
+          console.log(arr)
+          setStarsToBeRendered(arr)
+          // setStarsToBeRendered([...starsToBeRendered,halfStar])
+        }
+      } else {
+    
+      
+    }
+  }, [ratingAverage])
+  
+
+  // console.log(starsRated)
+
   return (
     <>
     <NavBar />
@@ -146,6 +192,9 @@ const ProductPage = ({history, match: {params: { id, category }}}) => {
         </div>
         <div className='detailsWrapper'>
           <div className='productPageTitle'>{product.title}</div>
+          <div className='starsRated'>{starsToBeRendered}({totalRatings.length} Ratings)
+
+          </div>
           <div className='productPageDescription'>
             {product.description}
           </div>
@@ -158,10 +207,12 @@ const ProductPage = ({history, match: {params: { id, category }}}) => {
           <div className='star'>
             {/* {!userInfo ? ( */}
             {
-              productRated
-                ? <div>already rated</div>
+              productRated !== -1
+                ? <div>already rated(in progress)</div>
                 :(
-            <div>
+                  <div>
+              <div style={{fontSize: '24px', color: 'grey', whiteSpace: 'nowrap'}}>Leave your Ratings</div>
+              <div style={{color: '#77c9d4'}}>
               <FontAwesomeIcon
                 onClick={() => rateHandler('1')}
                 onMouseOut={() => {
@@ -238,6 +289,7 @@ const ProductPage = ({history, match: {params: { id, category }}}) => {
                 
                 }}
                 icon={starFive?faStar:unStar}/>
+            </div>
             </div>
             )
           }

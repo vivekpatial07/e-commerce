@@ -10,6 +10,7 @@ export const allProductsData = createSelector(
       topProductsLoader,
       productRated,
       checkProdLoader,
+      totalRatings
 
     } = prodState
     return {
@@ -19,6 +20,7 @@ export const allProductsData = createSelector(
       topProductsLoader,
       productRated,
       checkProdLoader,
+      totalRatings
     }
   }
 )

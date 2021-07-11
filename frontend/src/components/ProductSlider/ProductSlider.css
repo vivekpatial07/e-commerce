@@ -1,9 +1,16 @@
 .productSliderContainer {
   display: flex;
-  overflow-x: scroll;
-  width: 90vw;
+  width: 300px;
   margin: 20px auto;
   padding: 10px;
   box-shadow: 0 0 5px 0px grey;
   border-radius: 5px
+}
+
+.carousel.carousel-slider .control-arrow:hover {
+  background:#77C9D4;
+}
+
+.carousel.carousel-slider .control-arrow {
+  background: #A5A5A5 !important;
 }

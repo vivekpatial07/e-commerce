@@ -27,7 +27,7 @@ const addressSchema = mongoose.Schema({
 })
 
 const reviewSchema = mongoose.Schema({
-  reviewerId: {
+  productId: {
     type: String,
     ref: 'User',
     required: true
