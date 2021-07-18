@@ -138,13 +138,16 @@ const ProductPage = ({history, match: {params: { id, category }}}) => {
   const [starsToBeRendered, setStarsToBeRendered] = useState([])
   
   useEffect(() => {
-    if(ratingAverage) {
+    if(totalRatings.length > 0) {
       let i = 0
       if(ratingAverage % 1 === 0){
-          console.log(1 )
-        //   while(i < Math.trunc(ratingAverage)){
-      //     const star = <FontAwesomeIcon icon={faStar} />
-      //     setStarsToBeRendered([...starsToBeRendered,star])
+        const arr = []
+          while(i < Math.trunc(ratingAverage)){
+            const star = <FontAwesomeIcon icon={faStar} />
+            arr.push(star)
+            i++
+          }
+          setStarsToBeRendered(arr)
         } else {
           let i = 0
           const arr = []
@@ -161,11 +164,11 @@ const ProductPage = ({history, match: {params: { id, category }}}) => {
           setStarsToBeRendered(arr)
           // setStarsToBeRendered([...starsToBeRendered,halfStar])
         }
-      } else {
-    
-      
-    }
-  }, [ratingAverage])
+      } 
+      return () => {
+        setStarsToBeRendered([])
+      }
+  }, [ratingAverage,totalRatings])
   
 
   // console.log(starsRated)
@@ -211,7 +214,7 @@ const ProductPage = ({history, match: {params: { id, category }}}) => {
                 ? <div>already rated(in progress)</div>
                 :(
                   <div>
-              <div style={{fontSize: '24px', color: 'grey', whiteSpace: 'nowrap'}}>Leave your Ratings</div>
+              <div style={{fontSize: '24px', color: 'grey', whiteSpace: 'nowrap', marginBottom:'20px'}}>Leave your Ratings</div>
               <div style={{color: '#77c9d4'}}>
               <FontAwesomeIcon
                 onClick={() => rateHandler('1')}
@@ -289,6 +292,11 @@ const ProductPage = ({history, match: {params: { id, category }}}) => {
                 
                 }}
                 icon={starFive?faStar:unStar}/>
+            </div>
+            <div>
+              <form>
+                rating form(in progress)
+              </form>
             </div>
             </div>
             )

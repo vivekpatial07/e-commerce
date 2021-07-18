@@ -24,8 +24,5 @@ app.use('/admin', adminRouter)
 
 app.listen(PORT,()=>{
   console.log(`
-  running in ${process.env.NODE_ENV} mode on port ${PORT}
-    devroadmap(check daily)
-  
-  `.yellow.bold)
+  running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold)
 })
