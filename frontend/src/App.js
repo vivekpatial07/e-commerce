@@ -14,6 +14,7 @@ import PaymentPage from './components/PaymentPage/PaymentPage';
 import OrderPlaced from './components/OrderPlaced/OrderPlaced';
 import Admin from './components/Admin/Admin';
 import AllProds from './components/AllProds/AllProds';
+import AddEditProduct from './components/Merchant/AddEditProduct/AddEditProduct';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route path='/ecommerce/user/profile' component={Profile}/>
           <Route path='/ecommerce' component={Home} exact/>
           <Route path='/dashboard' component={Admin} exact/>
+          <Route path='/yoyo' component={AddEditProduct} />
 
           <Redirect from="/" to="/ecommerce"/>
           

@@ -47,7 +47,7 @@ const Login = (props) => {
         props.history.push('/dashboard')
         return
       }
-      props.history.push('/ecommerce')
+      props.history.push('/yoyo')
     }
   },[props.history, redirect, user])
 

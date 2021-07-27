@@ -1,5 +1,5 @@
 import { takeLatest } from 'redux-saga/effects'
-import { AdminActions, authActions, cartActions, checkoutActions, productActions } from '../actionTypes'
+import { AdminActions, authActions, cartActions, checkoutActions, merchantActions, productActions } from '../actionTypes'
 import {
   signupSaga,
   loginSaga,
@@ -14,6 +14,7 @@ import {
   checkAddressSaga
 } from '../sagas/checkoutSaga'
 import { fetchAllUsersSaga } from './adminSaga'
+import { createProdSaga } from './merchantSaga'
 
 export default function* watcherSaga() {
   
@@ -41,4 +42,7 @@ export default function* watcherSaga() {
 
   /*---------------------Admin saga-------------- */
   yield takeLatest(AdminActions.FETCH_ALL_USERS_INIT, fetchAllUsersSaga)
+
+  /*--------------------- Merchant saga -------------- */
+  yield takeLatest(merchantActions.CREATE_PROD_INITIATE, createProdSaga)
 }
