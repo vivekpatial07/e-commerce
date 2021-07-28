@@ -1,0 +1,27 @@
+.singleProdContainer {
+  height: 200px;
+  width: 90%;
+  border: 1px solid #77C9D4;
+  margin: 10px auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.roundProd {
+  border: 1px solid #77C9D4;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin: 10px;
+}
+
+.editProdBtn {
+  margin: 10px;
+  height: 30px;
+  width: 100px;
+  border-radius: 20px 20px;
+  border: none;
+  background-color: #77C9D4;
+  color: #ffffff;
+}

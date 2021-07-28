@@ -44,7 +44,7 @@ const productSchema = mongoose.Schema({
   },
   image: {
     data: Buffer,
-    contentType: String
+    type: String,
   },
   stockCount: {
     type: Number,

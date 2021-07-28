@@ -1,0 +1,11 @@
+header {
+  color: #77C9D4;
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.horLine {
+  width: 50px;
+  background-color: #77C9D4;
+  border-color: transparent;
+}

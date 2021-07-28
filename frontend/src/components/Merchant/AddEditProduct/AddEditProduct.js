@@ -3,6 +3,7 @@ import ReactCrop from 'react-image-crop'
 import { useDispatch } from 'react-redux'
 import { createProdInit } from '../../../redux/actionCreators/merchantCreator'
 import './AddEditProduct.css'
+
 const initialState = {
   title: '',
   price: '',
@@ -96,12 +97,12 @@ const AddEditProduct = () => {
   return (
     <div>
       <form onSubmit={submitHandler} style={{display:'flex', flexDirection:'column', alignItems: 'center'}}>
-        <input name='title' value={formData.title} onChange={changeHandler} placeholder='title'/>
-        <input name='price' value={formData.price} onChange={changeHandler} placeholder='price'/>
-        <input name='description' value={formData.description} onChange={changeHandler} placeholder='description'/>
-        <input name='category' value={formData.category} onChange={changeHandler} placeholder='category'/>
-        <input name='image' onChange={onSelectFile} type='file'/>
-        <input name='stockCount' value={formData.stockCount} onChange={changeHandler} placeholder='stockCount'/>
+        <input className='addProdInput'name='title' value={formData.title} onChange={changeHandler} placeholder='title'/>
+        <input className='addProdInput'name='price' value={formData.price} onChange={changeHandler} placeholder='price'/>
+        <input className='addProdInput'name='description' value={formData.description} onChange={changeHandler} placeholder='description'/>
+        <input className='addProdInput'name='category' value={formData.category} onChange={changeHandler} placeholder='category'/>
+        <input className='addProdInput'name='image' onChange={onSelectFile} type='file'/>
+        <input className='addProdInput'name='stockCount' value={formData.stockCount} onChange={changeHandler} placeholder='stockCount'/>
         <button>yo man</button>
       </form>
       {

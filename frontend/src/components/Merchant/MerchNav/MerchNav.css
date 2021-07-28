@@ -1,0 +1,66 @@
+
+.functionPanel {
+  background: #f6f6f6;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.functionPanel svg {
+  margin: 0 10px;
+  color: #77C9D4;
+}
+
+.logoPanel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #77C9D4;
+}
+
+.logoPanel > div {
+  margin: 10px 20px;
+}
+
+.logoPanel div:nth-child(1){
+  font-size: 30px;
+}
+
+.logoPanel div:nth-child(2){
+  font-size: 20px;
+}
+
+.menuPanel {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #77C9D4;
+
+}
+
+.menuPanel > div {
+  margin: 10px 20px;
+  /* colo */
+}
+
+.ham-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.ham {
+  height: 5px;
+  margin: 2px;
+  width: 30px;
+  background: #f6f6f6;
+}
+
+.ham-container:hover {
+  cursor: pointer;
+}
+
+.navContainer {
+  margin: 0 0 10px 0;
+}
