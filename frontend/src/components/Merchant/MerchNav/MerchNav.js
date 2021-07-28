@@ -4,13 +4,13 @@ import { faHeart, faSearch } from '@fortawesome/free-solid-svg-icons'
 import './MerchNav.css'
 
 
-const MerchNav = () => {
+const MerchNav = ({ onClick }) => {
 
   return (
     <div className='navContainer'>
       <div className='menuPanel'>
         <div style={{fontSize:'32px', color: 'white'}}>A</div>
-        <div className='ham-container'>
+        <div className='ham-container' onClick={onClick}>
             <div className='ham'></div>
             <div className='ham'></div>
             <div className='ham'></div>

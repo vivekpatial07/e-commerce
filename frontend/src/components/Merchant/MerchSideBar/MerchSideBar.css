@@ -1,0 +1,31 @@
+.merSideBarContainer {
+  height: 100vh;
+  width: 150px;
+  position: absolute;
+  top: 0;
+  box-shadow: 1px 0 4px 2px #77C9D4;
+  background: #fff;
+}
+
+@keyframes inAnimation {
+  0% {
+    left: -50px;
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes outAnimation {
+  20% {
+    left: 0;
+  }
+  100% {
+    left: -50px;
+    opacity: 0;
+  }
+}
