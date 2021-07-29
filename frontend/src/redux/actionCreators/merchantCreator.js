@@ -15,3 +15,16 @@ export const createProdSucc = (data) => ({
   type: merchantActions.CREATE_PROD_SUCCESS,
   payload: data,
 })
+
+export const fetchMerchProdInit = () => ({
+  type: merchantActions.FETCH_MERCH_PROD_INIT
+})
+
+export const fetchMerchProdFail = () => ({
+  type: merchantActions.FETCH_MERCH_PROD_FAIL
+})
+
+export const fetchMerchProdSuccess = (data) => ({
+  type: merchantActions.FETCH_MERCH_PROD_SUCCESS,
+  payload: data
+})

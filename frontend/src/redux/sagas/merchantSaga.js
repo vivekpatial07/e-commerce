@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { put } from 'redux-saga/effects'
+import { fetchMerchProdSuccess } from '../actionCreators/merchantCreator'
 // import { put } from 'redux-saga/effects'
 // import { toast } from 'react-toastify'
 
@@ -16,5 +18,14 @@ export function* createProdSaga(data) {
     console.log(response)
   } catch (error) {
     console.log(error.message)
+  }
+}
+
+export function* fetchMerchProdSaga() {
+  try {
+    const response = yield axios.get('/merchant/fetchMerchProducts')
+    yield put(fetchMerchProdSuccess(response.data))
+  } catch (error) {
+    
   }
 }

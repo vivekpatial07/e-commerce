@@ -6,7 +6,13 @@ import {
   logoutSaga
  } from './authSaga'
 import { getCartItemsSaga } from './cartSaga'
-import { getAllProductsSaga, getSingleProductSaga, getTopProdsSaga, rateProdSaga, checkRatedProdSaga } from './productSaga'
+import {
+  getAllProductsSaga,
+  getSingleProductSaga,
+  getTopProdsSaga,
+  rateProdSaga,
+  checkRatedProdSaga
+} from './productSaga'
 import {
   fetchAddressSaga,
   setAddressSaga,
@@ -14,7 +20,10 @@ import {
   checkAddressSaga
 } from '../sagas/checkoutSaga'
 import { fetchAllUsersSaga } from './adminSaga'
-import { createProdSaga } from './merchantSaga'
+import {
+  createProdSaga,
+  fetchMerchProdSaga
+} from './merchantSaga'
 
 export default function* watcherSaga() {
   
@@ -45,4 +54,5 @@ export default function* watcherSaga() {
 
   /*--------------------- Merchant saga -------------- */
   yield takeLatest(merchantActions.CREATE_PROD_INITIATE, createProdSaga)
+  yield takeLatest(merchantActions.FETCH_MERCH_PROD_INIT, fetchMerchProdSaga)
 }

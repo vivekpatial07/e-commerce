@@ -7,6 +7,7 @@ import { productsReducer, singleProductReducer } from './reducers/productsReduce
 import { cartReducer } from './reducers/cartReducer'
 import { checkoutReducer } from './reducers/checkoutReducer'
 import { adminReducer} from './reducers/adminReducer'
+import { merchantReducer } from './reducers/merchantReducer'
 const reducer = combineReducers({
   signUp: signUpReducer,
   login: loginReducer,
@@ -14,7 +15,8 @@ const reducer = combineReducers({
   singleProduct: singleProductReducer,
   cart: cartReducer,
   checkout: checkoutReducer,
-  admin: adminReducer
+  admin: adminReducer,
+  merchant: merchantReducer
 })
 
 const sagaMiddleware = createSagaMiddleware()

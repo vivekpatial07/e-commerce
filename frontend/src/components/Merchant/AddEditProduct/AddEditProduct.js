@@ -9,7 +9,7 @@ const initialState = {
   price: '',
   description: '',
   category: '',
-  stockCount: 0,
+  stockCount: null,
 }
 
 const AddEditProduct = ({ toggle }) => {
@@ -91,7 +91,7 @@ const AddEditProduct = ({ toggle }) => {
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(createProdInit(formData, blob))
-
+    toggle()
   }
 
    // will use ref later on
@@ -112,9 +112,9 @@ const AddEditProduct = ({ toggle }) => {
         <input className='addProdInput'name='price' value={formData.price} onChange={changeHandler} placeholder='price'/>
         <input className='addProdInput'name='description' value={formData.description} onChange={changeHandler} placeholder='description'/>
         <input className='addProdInput'name='category' value={formData.category} onChange={changeHandler} placeholder='category'/>
-        <input className='addProdInput'name='image' onChange={onSelectFile} type='file'/>
+        <input className='imageInput'name='image' onChange={onSelectFile} type='file'/>
         <input className='addProdInput'name='stockCount' value={formData.stockCount} onChange={changeHandler} placeholder='stockCount'/>
-        <button>yo man</button>
+        <button className='prodSubmitBtn'>yo man</button>
       </form>
       {
         showCrop &&

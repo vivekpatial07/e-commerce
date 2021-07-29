@@ -34,8 +34,16 @@ const editProduct = async(req, res) => {
   console.log('edit prod')
 }
 
+const fetchMerchProduct = async(req, res) => {
+  const products = await Product.find()
+  console.log(products)
+  res.status(201).send(products)
+}
+
+
 module.exports = {
   addProduct,
   removeProduct,
-  editProduct
+  editProduct,
+  fetchMerchProduct
 }

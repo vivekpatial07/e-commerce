@@ -9,3 +9,10 @@ header {
   background-color: #77C9D4;
   border-color: transparent;
 }
+
+.yourProdLoader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+}

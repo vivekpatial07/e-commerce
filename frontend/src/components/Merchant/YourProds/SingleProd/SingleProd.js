@@ -1,14 +1,14 @@
 import React from 'react'
 import './SingleProd.css'
 
-const SingleProd = () => {
+const SingleProd = ({ product }) => {
   return (
     <div className='singleProdContainer'>
       <div className='roundProd'>
 
       </div>
       <div className='singleProdTitle'>
-          title-title-tTtiel
+        {product.title}
       </div>
       <div className='editProd'>
         <button className='editProdBtn'>Edit Product</button>
