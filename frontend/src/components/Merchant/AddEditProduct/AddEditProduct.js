@@ -12,7 +12,7 @@ const initialState = {
   stockCount: 0,
 }
 
-const AddEditProduct = () => {
+const AddEditProduct = ({ toggle }) => {
   
   const [formData, setFormData] = useState(initialState)
   const [upImg, setUpImg] = useState()
@@ -94,9 +94,20 @@ const AddEditProduct = () => {
 
   }
 
+   // will use ref later on
+  useEffect(() => {
+    const el = document.querySelector('body')
+    el.style.overflow = 'hidden'
+    return () => {
+      const el = document.querySelector('body')
+      el.style.overflow = 'scroll'
+    }
+  }, [])
+
+ 
   return (
-    <div>
-      <form onSubmit={submitHandler} style={{display:'flex', flexDirection:'column', alignItems: 'center'}}>
+    <div className='addEditContainer' onClick={toggle}>
+      <form onSubmit={submitHandler} style={{display:'flex', flexDirection:'column', alignItems: 'center'}} onClick={(e) => e.stopPropagation()}>
         <input className='addProdInput'name='title' value={formData.title} onChange={changeHandler} placeholder='title'/>
         <input className='addProdInput'name='price' value={formData.price} onChange={changeHandler} placeholder='price'/>
         <input className='addProdInput'name='description' value={formData.description} onChange={changeHandler} placeholder='description'/>
@@ -108,7 +119,9 @@ const AddEditProduct = () => {
       {
         showCrop &&
         (
-          <div className='modal'>
+          <div className='modal' onClick={(e) => {
+            e.stopPropagation()
+            }}>
             <ReactCrop
               src={upImg}
               onImageLoaded={onLoad}
@@ -125,8 +138,13 @@ const AddEditProduct = () => {
                   height: Math.round(completedCrop?.height ?? 0)
                 }}
               />
-              <button onClick={() => finalizeCrop(previewCanvasRef.current, completedCrop)}>Perfect</button>
             </div>
+            <button
+              className='perfectBtn'
+              onClick={() => finalizeCrop(previewCanvasRef.current, completedCrop)}
+            >
+              Perfect
+            </button>
           </div>
         )
       }

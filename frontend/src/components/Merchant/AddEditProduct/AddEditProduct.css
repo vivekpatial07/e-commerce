@@ -1,13 +1,37 @@
 .modal {
-  height: 100%;
   width: 100%;
   z-index: 100;
+  background: rgba(50,50,50,0.2);
   position: absolute;
   top: 0;
-  left: 0;
-  background: rgba(50,50,50,0.2);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 .addProdInput {
   height: 50px;
   width: 200px;
+}
+.addEditContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.4);
+  height: 100vh;
+}
+
+form {
+  transform: translateY(50%);
+}
+.perfectBtn {
+  height: 30px;
+  width: 100px;
+  border: none;
+  border-radius: 15px 15px;
+  background-color: #77C9D4;
+  color: #fff;
+  font-weight: 900;
 }

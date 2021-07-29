@@ -3,7 +3,7 @@ import './SingleProd.css'
 
 const SingleProd = () => {
   return (
-    <div class='singleProdContainer'>
+    <div className='singleProdContainer'>
       <div className='roundProd'>
 
       </div>

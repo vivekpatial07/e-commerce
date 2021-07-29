@@ -1,0 +1,8 @@
+.createProdBtn {
+  height: 30px;
+  width: 100px;
+  border: none;
+  background-color: transparent;
+  color: #77C9D4;
+  white-space: nowrap;
+}

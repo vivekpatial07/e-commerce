@@ -1,18 +1,18 @@
 .singleProdContainer {
   height: 200px;
   width: 90%;
-  border: 1px solid #77C9D4;
   margin: 10px auto;
   display: flex;
   align-items: center;
   flex-direction: column;
+  box-shadow: 0 0 10px 1px lightgrey;
 }
 
 .roundProd {
-  border: 1px solid #77C9D4;
   height: 100px;
   width: 100px;
   border-radius: 50%;
+  box-shadow: 0 0 7px 0px #77C9D4;
   margin: 10px;
 }
 
